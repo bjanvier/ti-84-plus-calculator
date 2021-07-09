@@ -1,0 +1,26 @@
+.trig_values_container, .symbols_values_container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding:0
+}
+
+.trig_values_container > li,
+.symbols_values_container > li
+{
+    width: 33.3%
+}
+
+.trig_values_container button,
+.symbols_values_container button
+
+{
+    width: 90%;
+    padding: 10px;
+    color: white;
+    background: black;
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 0 34px rgb(61, 60, 60);
+    font-weight:bolder
+}

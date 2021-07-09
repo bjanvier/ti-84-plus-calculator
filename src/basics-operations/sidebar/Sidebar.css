@@ -1,0 +1,33 @@
+.sidebar,  .assignments{
+    padding: 0;
+}
+
+
+.sidebar > .built_in_functions,
+.assignments > .arithmetic_operations
+{
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+
+.sidebar > .built_in_functions > li,
+.assignments > .arithmetic_operations > li
+{
+    padding: 7px 0;
+    width:100%
+}
+
+.sidebar > .built_in_functions > li button
+{
+    width: 90%;
+    padding: 12px;
+    color: white;
+    background: black;
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 0 34px rgb(61, 60, 60);
+    font-weight:bolder
+}

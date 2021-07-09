@@ -8,7 +8,9 @@ import {
   Link
 } from "react-router-dom";
 import Functions from './functions/Functions';
-
+import Header1 from './header-1/Header1';
+import Content from './basics-operations/Content';
+import AdvancedOperations from './advanced-operations/AdvancedOperations';
 
 function App() {
   return (
@@ -32,15 +34,18 @@ function App() {
           </div>
           <div className="content">
             <section className="header-1">
-              </section>
+              <Header1/>
+             </section>
 
               <section className="header-2">
               </section>
                   
               <section className="advanced-operations">
+                <AdvancedOperations/>
               </section>
               
-              <section className="basics-operations">
+            <section className="basics-operations">
+              <Content/> 
               </section>
           </div>
 

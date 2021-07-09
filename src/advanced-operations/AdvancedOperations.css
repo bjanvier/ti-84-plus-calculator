@@ -1,0 +1,24 @@
+.advanced_operations_content{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: aqua;
+    margin: 0;
+    padding:0;
+    width: 100%;
+}
+
+.advanced_operations_content > li {
+    width: 20%;
+}
+
+
+.advanced_operations_content > li button {
+    width: 90%;
+    padding: 10px;
+    color: white;
+    background: black;
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 0 34px rgb(61, 60, 60);
+    font-weight:bolder
+}

@@ -19,19 +19,19 @@ class Functions extends React.Component<FunctionsProps, FunctionsStates> {
       allFunctions:[
         {
           label:"STAT PLOT F1",
-          setPlots: <button   onClick={()=>this.f1()}>Y=</button>
+          setPlots: <button onClick={()=>this.f1()}>Y=</button>
         },
         {
           label:"TBLSET F2",
-          setPlots: <button onClick={()=>this.f2()}>Window=</button>
+          setPlots: <button onClick={()=>this.f2()}>WINDOW=</button>
         },
         {
           label:"FORMAT F3",
-          setPlots: <button onClick={()=>this.f3()}>Zoom</button>
+          setPlots: <button onClick={()=>this.f3()}>ZOOM</button>
         },
         {
           label: "CALC F4",
-          setPlots: <button onClick={()=>this.f4()}>TRACE=</button>
+          setPlots: <button onClick={()=>this.f4()}>TRACE</button>
         },
         {
           label:"TABLE F5",

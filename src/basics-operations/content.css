@@ -1,0 +1,22 @@
+.basics_operations_content{
+    display: flex;
+}
+
+.basics_operations_content > * {
+    min-height: 100px;
+}
+
+.basics_operations_content .sidebar{
+    flex-grow: 1;
+    background: lawngreen;
+}
+
+.basics_operations_content .values{
+    flex-grow: 3;
+    background: rgb(12, 207, 181);
+}
+
+.basics_operations_content .assignments{
+    flex-grow: 1;
+    background: rgb(165, 94, 156);
+}
