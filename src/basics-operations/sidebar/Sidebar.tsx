@@ -1,12 +1,13 @@
 import * as React from 'react';
-import { Component } from 'react';
+import { Component, MouseEventHandler } from 'react';
 import "./Sidebar.css";
 import { Link } from 'react-router-dom';
 
 export interface SidebarProps {
-  
+  // open: MouseEventHandler<HTMLButtonElement> | undefined
+
 }
- 
+
 export interface SidebarState {
   equations: Array<any[]>;
 }
@@ -15,9 +16,7 @@ class Sidebar extends React.Component<SidebarProps, SidebarState> {
   constructor(props: SidebarProps) {
     super(props);
     this.state = {
-      equations: [
-        
-      ]
+      equations: [],
      };
   }
 
@@ -34,15 +33,12 @@ class Sidebar extends React.Component<SidebarProps, SidebarState> {
             </li>
             <li>
               <button>LOG</button>
-          </li>
-          <li>
-              <button>LN</button>
-          </li>
-          <li>
-              <button>STOP </button>
-          </li>
-          <li>
-              <button>ON </button>
+            </li>
+            <li>
+                <button>LN</button>
+            </li>
+            <li>
+                <button>STOP </button>
             </li>
            </ul>
       </div>

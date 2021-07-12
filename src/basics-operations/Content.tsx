@@ -1,30 +1,36 @@
 import * as React from 'react';
-import { Component } from 'react';
 import Assignments from './assignments/Assignments';
 import Sidebar from './sidebar/Sidebar';
 import Values from './values/Values';
 
 
 export interface ContentProps {
-  
+  trigValues: Array<string>,
+  getTrigFunc: any
 }
- 
+
 export interface ContentState {
-  
 }
- 
+
 class Content extends React.Component<ContentProps, ContentState> {
   constructor(props: ContentProps) {
     super(props);
-    this.state = {  };
+    this.state = {
+     };
   }
-  render() { 
+
+
+
+  render() {
     return (
-      <div className="basics_operations_content">
+      <>
         <Sidebar />
-        <Values />
+        <Values
+          trigValues={this.props.trigValues}
+          getTrigFunc={this.props.getTrigFunc}
+        />
         <Assignments />
-      </div>
+      </>
      );
   }
 }

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Component } from 'react';
 import "./Values.css"
 import NumericalValues from './numerical-values/Numerical-Values';
@@ -8,23 +7,34 @@ import TrigValues from './trig-values-and-symbols/TrigValues';
 
 
 export interface ValuesProps {
-  
+  trigValues: string[],
+  getTrigFunc: any
 }
  
 export interface ValuesState {
-  
+  trigFunctions: any[]
 }
- 
-class Values extends React.Component<ValuesProps, ValuesState> {
+
+
+class Values extends Component<ValuesProps, ValuesState> {
   constructor(props: ValuesProps) {
     super(props);
-    this.state = {   };
+    this.state = {
+      trigFunctions: this.props.trigValues,
+     };
   }
-  render() { 
+
+
+  render() {
+    
     return (
       <div className="values_container">
         <section>
-          <TrigValues />
+
+          <TrigValues
+            trigFunctions={this.state.trigFunctions}
+            getTrigFunc={this.props.getTrigFunc}
+          />
           <Symbols />
         </section>
         <section>

@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Component } from 'react';
-
+import DataSource from '../../../DataSource';
 
 export interface TrigValuesProps {
-  
+  trigFunctions: Array<any>,
+  getTrigFunc: any,
 }
  
 export interface TrigValuesState {
@@ -17,19 +18,19 @@ class TrigValues extends React.Component<TrigValuesProps, TrigValuesState> {
   }
   render() { 
     return (
-      <div>
         <ul className="trig_values_container">
-        <li>
-           <button>SIN</button>
-        </li>
-        <li>
-          <button>COS</button>
-        </li>
-        <li>
-          <button>TAN</button>
-        </li>
+          {
+            this.props.trigFunctions.map((tf: any) => {
+              return (
+                <li key={tf}>
+                  <button
+                    onClick={()=>this.props.getTrigFunc(tf)}>{tf}</button>
+                </li>
+              )
+            }
+           )
+          }
       </ul>
-      </div>
       );
   }
 
