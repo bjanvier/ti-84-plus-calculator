@@ -40,7 +40,8 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
   render() { 
     return (
       <div style={{ textAlign: "left" }}>
-        {this.state.results}
+        {/* {this.state.results} */}
+        {this.props.expression}
       </div>
      );
   }

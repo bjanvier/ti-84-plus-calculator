@@ -1,16 +1,13 @@
-import * as React from 'react';
 import { Component } from 'react';
 
-
 export interface SymbolsProps {
-  
+  symbols: any[],
+  getSymbols:any
 }
- 
 export interface SymbolsState {
   
 }
- 
-class Symbols extends React.Component<SymbolsProps, SymbolsState> {
+class Symbols extends Component<SymbolsProps, SymbolsState> {
   constructor(props: SymbolsProps) {
     super(props);
     this.state = {   };
@@ -19,19 +16,20 @@ class Symbols extends React.Component<SymbolsProps, SymbolsState> {
     return (
       <div>
         <ul className="symbols_values_container">
-        <li>
-           <button>,</button>
-        </li>
-        <li>
-          <button>(</button>
-        </li>
-        <li>
-          <button>)</button>
-        </li>
-      </ul>
+        {
+            this.props.symbols.map((symbol: any) => {
+              return (
+                <li key={symbol}>
+                  <button
+                    onClick={()=>this.props.getSymbols(symbol)}>{symbol}</button>
+                </li>
+              )
+            }
+           )
+          }
+        </ul>
       </div>
       );
   }
 }
- 
 export default Symbols;

@@ -1,6 +1,4 @@
-import * as React from 'react';
 import { Component } from 'react';
-import DataSource from '../../../DataSource';
 
 export interface TrigValuesProps {
   trigFunctions: Array<any>,
@@ -8,14 +6,14 @@ export interface TrigValuesProps {
 }
  
 export interface TrigValuesState {
-  
 }
  
-class TrigValues extends React.Component<TrigValuesProps, TrigValuesState> {
+class TrigValues extends Component<TrigValuesProps, TrigValuesState> {
   constructor(props: TrigValuesProps) {
     super(props);
     this.state = {  };
   }
+
   render() { 
     return (
         <ul className="trig_values_container">
@@ -33,7 +31,5 @@ class TrigValues extends React.Component<TrigValuesProps, TrigValuesState> {
       </ul>
       );
   }
-
 }
- 
 export default TrigValues;

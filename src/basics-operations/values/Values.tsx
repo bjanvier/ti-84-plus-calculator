@@ -8,11 +8,20 @@ import TrigValues from './trig-values-and-symbols/TrigValues';
 
 export interface ValuesProps {
   trigValues: string[],
-  getTrigFunc: any
+  getTrigFunc: any,
+  symbols: any[]
+  getSymbols: any,
+  otherValues: any[],
+  getOtherValues: any
+  numericalValues: any[]
+  getNumericalValues: any
 }
  
 export interface ValuesState {
-  trigFunctions: any[]
+  trigFunctions: any[],
+  symbols: any[],
+  otherValues: any[],
+  numericalValues: any[]
 }
 
 
@@ -21,12 +30,14 @@ class Values extends Component<ValuesProps, ValuesState> {
     super(props);
     this.state = {
       trigFunctions: this.props.trigValues,
+      symbols: this.props.symbols,
+      otherValues: this.props.otherValues,
+      numericalValues: this.props.numericalValues
      };
   }
 
 
   render() {
-    
     return (
       <div className="values_container">
         <section>
@@ -35,11 +46,21 @@ class Values extends Component<ValuesProps, ValuesState> {
             trigFunctions={this.state.trigFunctions}
             getTrigFunc={this.props.getTrigFunc}
           />
-          <Symbols />
+          <Symbols
+            symbols={this.state.symbols}
+            getSymbols={this.props.getSymbols}
+          />
         </section>
         <section>
-          <NumericalValues/>
-          <OtherValues />
+          <NumericalValues
+            numericalValues={this.state.numericalValues}
+            getNumericalValues={this.props.getNumericalValues}
+            
+          />
+          <OtherValues
+            otherValues={this.state.otherValues}
+            getOtherValues={this.props.getOtherValues}
+          />
         </section>
       </div>
       );
