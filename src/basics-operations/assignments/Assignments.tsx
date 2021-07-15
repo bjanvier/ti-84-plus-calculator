@@ -1,8 +1,10 @@
 import * as React from 'react';
+import { MouseEventHandler } from 'react';
 import "./Assignment.css"
 export interface AssignmentsProps {
   arithmeticOperations: Array<any>,
-  getArithmeticOperations: any
+  getArithmeticOperations: any,
+  getResults: MouseEventHandler<HTMLButtonElement> | undefined,
 }
  
 export interface AssignmentsState {
@@ -19,9 +21,9 @@ class Assignments extends React.Component<AssignmentsProps, AssignmentsState> {
       <div className="assignments">
       
       <ul className="arithmetic_operations">
-      <li>
+      {/* <li>
           <button style={{color:"white", background:"black"}}>^</button>
-        </li>
+        </li> */}
          {
             this.props.arithmeticOperations.map((operation: any) => {
               return (
@@ -33,9 +35,13 @@ class Assignments extends React.Component<AssignmentsProps, AssignmentsState> {
             }
            )
           }
-      <li>
-          <button>Enter </button>
-        </li>
+          <li className="">
+              <button onClick={this.props.getResults}  style={{padding: "51px 0",}}>
+                {
+                  <strong>Enter</strong>
+                }
+              </button>
+            </li>
        </ul>
       </div>
      );

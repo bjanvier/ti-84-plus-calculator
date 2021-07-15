@@ -20,13 +20,11 @@ class NumericalValues extends React.Component<NumericalValuesProps, NumericalVal
 
   render() {
     return (
-      <ul className="numerical_values_container" style={{display: 'flex', flexWrap:"wrap", padding: 0}}>
+      <ul className="numerical_values_container">
         {
           this.props.numericalValues.map((num: any) => {
             return (
-              <li
-                key={num.value.toString()}
-                style={{ width: "33.3%" }}>
+              <li key={num.value.toString()}>
                   {num.label}<br/>
                   <button
                     onClick={() => this.props.getNumericalValues(num.value.toString())}>

@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 export interface SidebarProps {
   // open: MouseEventHandler<HTMLButtonElement> | undefined
 
+  open: MouseEventHandler<HTMLButtonElement> | undefined,
+  toggle: boolean
 }
 
 export interface SidebarState {
@@ -23,7 +25,6 @@ class Sidebar extends React.Component<SidebarProps, SidebarState> {
   render() { 
     return (
       <div className="sidebar" >
-      
           <ul className="built_in_functions">
             <li>
               <button>x^-1</button>
@@ -40,7 +41,16 @@ class Sidebar extends React.Component<SidebarProps, SidebarState> {
             <li>
                 <button>STOP </button>
             </li>
-           </ul>
+          
+            <li className="">
+              <button onClick={this.props.open}  style={{padding: "51px 0",}}>
+                {
+                  this.props.toggle ? <strong>ON</strong> :
+                    <strong>ON</strong>
+                }
+              </button>
+            </li>
+          </ul>
       </div>
      );
   }

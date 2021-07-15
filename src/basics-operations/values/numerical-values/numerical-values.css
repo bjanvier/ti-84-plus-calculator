@@ -8,3 +8,14 @@
     box-shadow: 0 0 34px rgb(61, 60, 60);
     font-weight:bolder
 }
+
+.numerical_values_container{
+    padding: 0;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.numerical_values_container > li{
+    width:33.3%
+}

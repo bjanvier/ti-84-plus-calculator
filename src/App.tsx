@@ -11,22 +11,34 @@ import Header1 from './header-1/Header1';
 import Content from './basics-operations/Content';
 import AdvancedOperations from './advanced-operations/AdvancedOperations';
 import Playground from './playground/Playground';
-import Switcher from './Switcher';
 import DataSource from './DataSource';
+import Complex from 'complex-js';
+import * as math from 'mathjs';
 
+const parser = math.parser()
 interface AppProps{
 }
 interface AppState{
   on: boolean,
   str: string,
-  numericalValues: Array<any>
+  expressions:string[],
+  numericalValues: Array<any>,
+  done: boolean,
+  toggle: boolean,
+  clear: boolean,
+  focuserBar: string,
 }
 class App extends Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
     this.state = {
+      expressions: [],
       on: false,
+      done: false,
       str: "",
+      focuserBar:"",
+      toggle: false,
+      clear: false,
       numericalValues: [
         {
           value: 9,
@@ -68,7 +80,10 @@ class App extends Component<AppProps, AppState> {
     }
   }
 
-  open():void {
+  open(): void {
+    if (this.state.expressions.length === 0) {
+      this.setState({ focuserBar: "|"})
+    }
     this.setState(state => {
       const on: boolean = !state.on;
       return {
@@ -108,6 +123,56 @@ class App extends Component<AppProps, AppState> {
     })
   }
   
+  getAdvancedOption(option: any) {
+    if (option === "CLEAR") {
+
+      this.setState((state) => {
+        var clear: boolean = true;
+        const str = "";
+        const expressions:Array<string> = []
+        
+        return {clear, str, expressions}
+      })
+    } else {
+      this.setState({
+        str: option
+      })
+    }
+  }
+
+  
+  isMathematicalExp(str: string) {
+    try {
+      Complex.compile(str);
+    } catch (error) {
+      return false;
+    }
+    return true;
+  }
+
+  getResults() {
+    const { expressions, str } = this.state;
+
+
+    if (this.isMathematicalExp(this.state.str)) {
+
+      //Save the input values before evaluating them
+      expressions.push(str);
+      
+      console.log(expressions);
+      this.setState((state:any) => {
+        const done: boolean = true
+        //reset the str to be able of receiving a new value
+        const str: string = "";
+        return { done, str}
+      })
+    }  else {
+      this.setState({
+        str: "ERROR"
+      })
+    }
+  }
+  
   render() {
     return (
       <div className="App">
@@ -124,7 +189,11 @@ class App extends Component<AppProps, AppState> {
                     this.state.on &&
                     <>
                       <Playground
-                        expression={this.state.str}
+                        focuserBar={this.state.focuserBar}
+                        input={this.state.str}
+                        done={this.state.done}
+                        clear={this.state.clear}
+                        expressions={this.state.expressions}
                       />
                     </>
                   }
@@ -141,12 +210,15 @@ class App extends Component<AppProps, AppState> {
                 <Header1/>
                </section>
                 <section className="advanced-operations">
-                  <AdvancedOperations/>
+                <AdvancedOperations
+                  allAdvancedOptions={["MATH", "APPS", "PRGM", "VARS", "CLEAR"]}
+                  getAdvancedOption={this.getAdvancedOption.bind(this)}
+                />
                 </section>
                 
               <section className="basics_operations_content">
                 <Content
-                  trigValues={["SIN", "COS", "TAN"]}
+                  trigValues={["sin", "cos", "tan"]}
                   getTrigFunc={this.getTrigFunc.bind(this)}
                   symbols={[",", "(", ")"]}
                   getSymbols={this.getSymbols.bind(this)}
@@ -156,11 +228,12 @@ class App extends Component<AppProps, AppState> {
                   getNumericalValues={this.getNumericalValues.bind(this)}
                   arithmeticOperations={["/", "+", "-", "*"]}
                   getArithmeticOperations={this.getArithmeticOperations.bind(this)}
-                />
-                <Switcher
+
                   open={this.open.bind(this)}
-                  toggle={this.state.on}
+                  toggle={this.state.toggle}
+                  getResults={this.getResults.bind(this)}
                 />
+           
               </section>
             </div>
           </div>
@@ -169,5 +242,4 @@ class App extends Component<AppProps, AppState> {
     )
   }
 }
-
 export default App;

@@ -1,13 +1,10 @@
 import * as React from 'react';
 import { Component } from 'react';
-
-
 export interface AdcancedOperationsProps {
-  
+  allAdvancedOptions: Array<any>,
+  getAdvancedOption: any
 }
- 
 export interface AdcancedOperationsState {
-  
 }
  
 class AdvancedOperations extends Component<AdcancedOperationsProps, AdcancedOperationsState> {
@@ -19,13 +16,16 @@ class AdvancedOperations extends Component<AdcancedOperationsProps, AdcancedOper
     return (
     <ul className="advanced_operations_content">
         {
-          ["MATH", "APPS", "PRGM", "VARS", "CLEAR"].map((item: any) => {
+            this.props.allAdvancedOptions.map((item: any) => {
             return (
-              <li style={{color:"red"}} >
-                <button>
+              <li>
+                <button style={{color:"wheat"}} 
+                  onClick={()=>this.props.getAdvancedOption(item)}
+                >
                   {item}
                 </button>
               </li>
+              
             )
           })
         }
@@ -33,5 +33,4 @@ class AdvancedOperations extends Component<AdcancedOperationsProps, AdcancedOper
     )
   }
 }
- 
 export default AdvancedOperations;

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { MouseEventHandler, Component } from 'react';
 import Assignments from './assignments/Assignments';
 import Sidebar from './sidebar/Sidebar';
 import Values from './values/Values';
@@ -6,22 +6,25 @@ import Values from './values/Values';
 
 export interface ContentProps {
   trigValues: Array<string>,
-  getTrigFunc: any,
-  getSymbols: any,
+  getTrigFunc: MouseEventHandler<HTMLButtonElement> | undefined,
+  getSymbols: MouseEventHandler<HTMLButtonElement> | undefined,
   symbols: Array<any>,
   otherValues: Array<any>,
-  getOtherValues: any,
+  getOtherValues:MouseEventHandler<HTMLButtonElement> | undefined,
   numericalValues: Array<string>,
-  getNumericalValues: any,
+  getNumericalValues:MouseEventHandler<HTMLButtonElement> | undefined,
   arithmeticOperations: Array<any>,
-  getArithmeticOperations: any,
+  getArithmeticOperations: MouseEventHandler<HTMLButtonElement> | undefined,
+  getResults: MouseEventHandler<HTMLButtonElement> | undefined,
 
+  open:MouseEventHandler<HTMLButtonElement> | undefined,
+  toggle: boolean,
 }
 
 export interface ContentState {
 }
 
-class Content extends React.Component<ContentProps, ContentState> {
+class Content extends Component<ContentProps, ContentState> {
   constructor(props: ContentProps) {
     super(props);
     this.state = { };
@@ -30,7 +33,10 @@ class Content extends React.Component<ContentProps, ContentState> {
   render() {
     return (
       <>
-        <Sidebar />
+        <Sidebar
+          open={this.props.open}
+          toggle={this.props.toggle}
+        />
         <Values
           trigValues={this.props.trigValues}
           getTrigFunc={this.props.getTrigFunc}
@@ -42,6 +48,7 @@ class Content extends React.Component<ContentProps, ContentState> {
           getNumericalValues={this.props.getNumericalValues}
         />
         <Assignments
+          getResults={this.props.getResults}
           arithmeticOperations={this.props.arithmeticOperations}
           getArithmeticOperations={this.props.getArithmeticOperations}
         />

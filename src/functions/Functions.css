@@ -30,7 +30,8 @@
     background: rgb(47, 65, 47);
     width: 95%;
     margin: 0 auto;
-    min-height: 120px;
+    height: 120px;
+    overflow: scroll;
   }
   
   .container .header > section:nth-child(2)

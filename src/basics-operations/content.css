@@ -1,24 +1,30 @@
 .basics_operations_content{
     position: relative;
     display: flex;
+    /* flex-wrap: wrap; */
+    width: 100%;
+    padding: 0
 }
 
 .basics_operations_content > * {
-    min-height: 100px;
+    /* min-height: 100px; */
 }
 
 .basics_operations_content .sidebar{
-    flex-grow: 1;
+    /* flex-grow: 2; */
+    width: 20%;
     background: lawngreen;
 }
 
 .basics_operations_content .values{
-    flex-grow: 3;
+    /* flex-grow: 3; */
+    width: 60%;
     background: rgb(12, 207, 181);
 }
 
 .basics_operations_content .assignments{
-    flex-grow: 1;
+    /* flex-grow: 5; */
+    width: 20%;
     background: rgb(165, 94, 156);
 }
 
@@ -28,14 +34,22 @@
     bottom: 0px;
   }
 
-.switcher_on_off button{
-    margin: 0 auto;
+.switcher_on_off button,
+.get_final_results button{
+    margin: auto;
     width: 90%;
-    padding:30px 18px ;
+    /* padding:30px 10px ; */
     color: white;
     background: black;
     border: none;
     border-radius: 16px;
     box-shadow: 0 0 34px rgb(61, 60, 60);
     font-weight:bolder
+  }
+
+
+  .get_final_results{
+    position: absolute;
+    bottom: 0px;
+    right: 0;
   }
