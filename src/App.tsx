@@ -13,9 +13,7 @@ import AdvancedOperations from './advanced-operations/AdvancedOperations';
 import Playground from './playground/Playground';
 import DataSource from './DataSource';
 import Complex from 'complex-js';
-import * as math from 'mathjs';
 
-const parser = math.parser()
 interface AppProps{
 }
 interface AppState{
@@ -106,9 +104,15 @@ class App extends Component<AppProps, AppState> {
   }
 
   getOtherValues(value: any) {
-    this.setState({
-      str: this.state.str+value
-    })
+    if (value === "(-)") {
+      this.setState({
+        str: this.state.str+"-"
+      })
+    } else {
+      this.setState({
+        str: this.state.str+value
+      })
+    }
   }
 
   getNumericalValues(num: any) {
@@ -139,7 +143,6 @@ class App extends Component<AppProps, AppState> {
       })
     }
   }
-
   
   isMathematicalExp(str: string) {
     try {
@@ -153,8 +156,7 @@ class App extends Component<AppProps, AppState> {
   getResults() {
     const { expressions, str } = this.state;
 
-
-    if (this.isMathematicalExp(this.state.str)) {
+    if (this.isMathematicalExp(this.state.str) || this.state.str.includes("ln")) {
 
       //Save the input values before evaluating them
       expressions.push(str);
@@ -171,6 +173,12 @@ class App extends Component<AppProps, AppState> {
         str: "ERROR"
       })
     }
+  }
+
+  getBuiltMathFunctions(func: any) {
+    this.setState({
+      str: this.state.str+func
+    })
   }
   
   render() {
@@ -222,18 +230,18 @@ class App extends Component<AppProps, AppState> {
                   getTrigFunc={this.getTrigFunc.bind(this)}
                   symbols={[",", "(", ")"]}
                   getSymbols={this.getSymbols.bind(this)}
-                  otherValues={["0", ",", "(-)"]}
+                  otherValues={["0", ".", "(-)"]}
                   getOtherValues={this.getOtherValues.bind(this)}
                   numericalValues={this.state.numericalValues}
                   getNumericalValues={this.getNumericalValues.bind(this)}
-                  arithmeticOperations={["/", "+", "-", "*"]}
+                  arithmeticOperations={["^", "/", "+", "-", "*"]}
                   getArithmeticOperations={this.getArithmeticOperations.bind(this)}
-
                   open={this.open.bind(this)}
                   toggle={this.state.toggle}
                   getResults={this.getResults.bind(this)}
+                  getBuiltMathFunctions={this.getBuiltMathFunctions.bind(this)}
+                  builtMathFunctions={["x^-1", "x^2", "log", "ln", "sto"]}
                 />
-           
               </section>
             </div>
           </div>

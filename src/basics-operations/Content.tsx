@@ -19,6 +19,8 @@ export interface ContentProps {
 
   open:MouseEventHandler<HTMLButtonElement> | undefined,
   toggle: boolean,
+  getBuiltMathFunctions: MouseEventHandler<HTMLButtonElement> | undefined,
+  builtMathFunctions: Array<any>
 }
 
 export interface ContentState {
@@ -36,6 +38,8 @@ class Content extends Component<ContentProps, ContentState> {
         <Sidebar
           open={this.props.open}
           toggle={this.props.toggle}
+          builtMathFunctions={this.props.builtMathFunctions}
+          getBuiltMathFunctions={this.props.getBuiltMathFunctions}
         />
         <Values
           trigValues={this.props.trigValues}
