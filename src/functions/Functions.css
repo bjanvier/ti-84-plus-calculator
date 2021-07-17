@@ -4,12 +4,14 @@
     display: flex;
     flex-wrap: wrap;
     min-width: 300px;
-    max-width: 400px;
+    /* max-width: 320px; */
+    height: 275px;
     background: rgb(223, 222, 222);
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
+    border-top-left-radius: 33px;
+    border-top-right-radius: 33px;
   }
   
+
   .container .header > section:nth-child(1) {
     width: 100%;
     min-height: 50px;
@@ -48,7 +50,7 @@
   }
   
   .container > .header> section:nth-child(2) ul >li {
-    width:18%;
+    width:19%;
   }
   
   .container > .header > section:nth-child(2) ul >li  button

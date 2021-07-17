@@ -3,6 +3,8 @@
 .values_container {
     display:flex;
     flex-wrap: wrap;
+    width: 60%;
+    height:200px;
     background: #000;
 
 } 

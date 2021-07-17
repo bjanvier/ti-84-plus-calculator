@@ -25,6 +25,11 @@ interface AppState{
   toggle: boolean,
   clear: boolean,
   focuserBar: string,
+  otherValues: Array<any>,
+  symbols: Array<any>,
+  trigValues: Array<any>,
+  arithmeticOperations: Array<any>,
+  builtMathFunctions: Array<any>,
 }
 class App extends Component<AppProps, AppState> {
   constructor(props: AppProps) {
@@ -39,42 +44,157 @@ class App extends Component<AppProps, AppState> {
       clear: false,
       numericalValues: [
         {
-          value: 9,
-          label: <label>w Q</label>
+          value: 7,
+          value1:"u",
+          label: "O"
         },
         {
           value: 8,
-          label: <label>v P</label>
+          value1:"v",
+          label: "P"
         },
         {
-          value: 7,
-          label: <label>u O</label>
-        },
-        {
-          value: 6,
-          label: <label>L6 V</label>
-        },
-        {
-          value: 5,
-          label: <label>L5 U</label>
+          value: 9,
+          value1:"w",
+          label: "Q"
         },
         {
           value: 4,
-          label: <label>L4 T</label>
+          value1:"L4",
+          label: "T"
         },
         {
-          value: 3,
-          label: <label>L3 Ø</label>
+          value: 5,
+          value1:"L5",
+          label: "U"
         },
         {
-          value: 2,
-          label: <label>L2 Z</label>
+          value: 6,
+          value1:"L6",
+          label: "V"
         },
         {
           value: 1,
-          label: <label>L1 Y</label>
+          value1:"L1",
+          label: "Y"
         },
-      ]
+        {
+          value: 2,
+          value1:"L2",
+          label: "Z"
+        },
+        {
+          value: 3,
+          value1:"L3",
+          label: "Ø"
+        },
+      ],
+      otherValues: [
+        {
+          value: "0",
+          value1:"~",
+          label: "Catalog"
+        },
+        {
+          value: ".",
+          value1:":",
+          label: "i"
+        },
+        {
+          value: "(-)",
+          value1:"?",
+          label: "Ans"
+        },
+      ],
+      symbols: [
+        {
+          value: ",",
+          value1:"J",
+          label: "EE"
+        },
+        {
+          value: "(",
+          value1:"K",
+          label: "{"
+        },
+        {
+          value: ")",
+          value1:"L",
+          label: "}"
+        },
+      ],
+      trigValues: [
+        {
+          value: "sin",
+          value1:"sin^-1",
+          label: "E"
+        },
+        {
+          value: "cos",
+          value1:"cos^-1",
+          label: "F"
+        },
+        {
+          value: "tan",
+          value1:"tan^-1",
+          label: "G"
+        },
+      ],
+
+      arithmeticOperations: [
+        {
+          value: "^",
+          value1:"sin^-1",
+          label: "E"
+        },
+        {
+          value: "/",
+          value1:"e",
+          label: "M"
+        },
+        {
+          value: "*",
+          value1:"[",
+          label: "R"
+        },
+        {
+          value: "-",
+          value1:"]",
+          label: "W"
+        },
+        {
+          value: "+",
+          value1:"MEM",
+          label: "''"
+        },
+      ],
+      builtMathFunctions:[
+        {
+          value: "x^-1",
+          value1:"MATRIX",
+          label: "D"
+        },
+        {
+          value: "x^2",
+          value1:"sqrt",
+          label: "I"
+        },
+        {
+          value: "log",
+          value1:"10^x N",
+          label: "R"
+        },
+        {
+          value: "ln",
+          value1:"e^x",
+          label: "S"
+        },
+        {
+          value: "sto>",
+          value1:"rcl",
+          label: "X"
+        },
+      ],
     }
   }
 
@@ -154,9 +274,15 @@ class App extends Component<AppProps, AppState> {
   }
 
   getResults() {
-    const { expressions, str } = this.state;
+    const { expressions, str, trigValues } = this.state;
 
-    if (this.isMathematicalExp(this.state.str) || this.state.str.includes("ln")) {
+
+    if (this.isMathematicalExp(this.state.str)
+      || this.state.str.includes("ln")
+      || this.state.str.includes("log")
+      || this.state.str.includes("x^2")
+      || this.state.str.includes("x^-1")
+    ) {
 
       //Save the input values before evaluating them
       expressions.push(str);
@@ -182,7 +308,9 @@ class App extends Component<AppProps, AppState> {
   }
   
   render() {
+    const { trigValues, arithmeticOperations, builtMathFunctions } = this.state;
     return (
+      
       <div className="App">
         <Router>
           <div className="container">
@@ -226,21 +354,22 @@ class App extends Component<AppProps, AppState> {
                 
               <section className="basics_operations_content">
                 <Content
-                  trigValues={["sin", "cos", "tan"]}
+                  trigValues={trigValues}
                   getTrigFunc={this.getTrigFunc.bind(this)}
-                  symbols={[",", "(", ")"]}
+                  symbols={this.state.symbols}
                   getSymbols={this.getSymbols.bind(this)}
-                  otherValues={["0", ".", "(-)"]}
+                  otherValues={this.state.otherValues}
                   getOtherValues={this.getOtherValues.bind(this)}
                   numericalValues={this.state.numericalValues}
                   getNumericalValues={this.getNumericalValues.bind(this)}
-                  arithmeticOperations={["^", "/", "+", "-", "*"]}
+                  arithmeticOperations={arithmeticOperations}
                   getArithmeticOperations={this.getArithmeticOperations.bind(this)}
                   open={this.open.bind(this)}
                   toggle={this.state.toggle}
                   getResults={this.getResults.bind(this)}
                   getBuiltMathFunctions={this.getBuiltMathFunctions.bind(this)}
-                  builtMathFunctions={["x^-1", "x^2", "log", "ln", "sto"]}
+                  builtMathFunctions={builtMathFunctions}
+                  // builtMathFunctions={["x^-1", "x^2", "log", "ln", "sto>"]}
                 />
               </section>
             </div>

@@ -1,6 +1,6 @@
 .numerical_values_container button{
     width: 90%;
-    padding: 10px;
+    padding: 6px;
     background: white;
     color: black;
     border: none;
@@ -19,3 +19,6 @@
 .numerical_values_container > li{
     width:33.3%
 }
+
+
+/* .numerical_values_container> li  */

@@ -21,25 +21,23 @@ class Assignments extends React.Component<AssignmentsProps, AssignmentsState> {
       <div className="assignments">
       
       <ul className="arithmetic_operations">
-      {/* <li>
-          <button style={{color:"white", background:"black"}}>^</button>
-        </li> */}
          {
-            this.props.arithmeticOperations.map((operation: any) => {
+            this.props.arithmeticOperations.map((operation: any, i: number) => {
               return (
                 <li key={operation}>
-                  <button
-                    onClick={()=>this.props.getArithmeticOperations(operation)}>{operation}</button>
+                <label style={{color:"blue"}}>
+                  {operation.label}&emsp;<strong style={{color:"green", fontWeight:"bold"}}>{operation.value1}</strong>
+                </label>
+                  <button style={i === 0 ? { background: "black", color: "#fff" } : {}}
+                    onClick={()=>this.props.getArithmeticOperations(operation.value)}>{operation.value}</button>
                 </li>
               )
             }
            )
           }
           <li className="">
-              <button onClick={this.props.getResults}  style={{padding: "51px 0",}}>
-                {
+              <button onClick={this.props.getResults}  style={{padding: "20px 0",}}>
                   <strong>Enter</strong>
-                }
               </button>
             </li>
        </ul>

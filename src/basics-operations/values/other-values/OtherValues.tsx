@@ -22,8 +22,12 @@ class OtherValues extends React.Component<OtherValuesProps, OtherValuesState> {
             this.props.otherValues.map((tf: any) => {
               return (
                 <li key={tf}>
+                  <label style={{color:"blue"}}>
+
+                  {tf.label}&emsp;<strong style={{color:"green", fontWeight:"bold"}}>{tf.value1}</strong>
+                </label>
                   <button
-                    onClick={()=>this.props.getOtherValues(tf)}>{tf}</button>
+                    onClick={()=>this.props.getOtherValues(tf.value)}>{tf.value}</button>
                 </li>
               )
             }

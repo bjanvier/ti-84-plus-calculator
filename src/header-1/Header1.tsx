@@ -19,7 +19,7 @@ class Header1 extends React.Component<Header1Props, Header1State> {
         <section className="helper_operations">
           <div className="toggle_switchers">
             <button>2ND</button>
-            <button style={{color:"purple"}}>ALPHA</button>
+            <button>ALPHA</button>
           </div>
           <div className="controllers">
             <button>MODE</button>

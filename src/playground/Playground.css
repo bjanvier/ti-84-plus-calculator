@@ -1,0 +1,6 @@
+.playground_container{
+    padding: 8px;
+    ms-overflow-style: none;
+    scrollbar-width: none; /* Firefox */
+    font-size: 18px;
+}

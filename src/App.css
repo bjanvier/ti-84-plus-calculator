@@ -7,24 +7,44 @@ ul{
  list-style: none;
 }
 
+strong, label{
+  font-size: 10px;
+}
+
 button{
   border: none;
   cursor: pointer;
+  box-shadow: 0 0 34px rgb(0, 0, 0);
+  font-size: 12px;
+}
+
+button:hover:not(.controllers button),
+.sidebar > .built_in_functions> li button:hover,
+.assignments > .arithmetic_operations> li button:hover  {
+  animation-duration: 15s;
+  animation-name: buttonAnimation;
+  background:rgba(82, 190, 240, 0.315);
+  color:#fff;
+  box-shadow: 0 0 64px rgb(0, 183, 255) rgb()
+}
+
+@keyframes buttonAnimation {
+  from {
+    margin-left: 1%;
+    width: 90%;
+  }
+  to {
+    width: 91%;
+  }
 }
 
 .container{
   display: block;
-  padding: 24px;
-  min-height:300px;
-  min-width: 300px;
-  max-width: 400px;
-  border-radius: 55px;
+  padding: 15px;
+  max-width: 370px;
+  border-radius: 33px;
   margin: 0 auto;
   background-color:rgb(185, 185, 185);
   background: rgb(0, 0, 0);
   text-align: center;
-}
-
-.container > * > * > *{
-  padding: 16px 0
 }

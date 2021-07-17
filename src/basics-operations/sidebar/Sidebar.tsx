@@ -28,12 +28,16 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
       <div className="sidebar" >
           <ul className="built_in_functions">
                 {
-                  this.props.builtMathFunctions.map((func: string) => {
+                  this.props.builtMathFunctions.map((func: any, i: number) => {
                     return (
                       <li className="">
-                        <button onClick={ ()=> this.props.getBuiltMathFunctions(func)}>
+                                     
+                        <label style={{ color: "blue" }}>
+                          {func.value1}&emsp;<strong style={{ color: "green", fontWeight: "bold" }}>{func.label}</strong>
+                        </label>
+                        <button onClick={ ()=> this.props.getBuiltMathFunctions(func.value)}>
                             <strong>
-                              {func}
+                              {func.value}
                             </strong>
                         </button>
                       </li>
@@ -41,7 +45,7 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
                   })
                 }
               <li className="">
-                  <button onClick={this.props.open}  style={{padding: "51px 0",}}>
+                  <button onClick={this.props.open}  style={{padding: "20px 0",}}>
                     {
                       !this.props.toggle && <strong>ON</strong>
                     }

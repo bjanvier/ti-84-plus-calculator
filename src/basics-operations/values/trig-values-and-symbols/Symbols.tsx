@@ -19,9 +19,13 @@ class Symbols extends Component<SymbolsProps, SymbolsState> {
         {
             this.props.symbols.map((symbol: any) => {
               return (
-                <li key={symbol}>
+                <li key={symbol.value}>
+                  <label>
+                  {symbol.label}&emsp;<strong style={{color:"green", fontWeight:"bold"}}>{symbol.value1}</strong>
+                </label>
                   <button
-                    onClick={()=>this.props.getSymbols(symbol)}>{symbol}</button>
+                    onClick={() => this.props.getSymbols(symbol.value)}>{symbol.value}
+                  </button>
                 </li>
               )
             }

@@ -25,8 +25,10 @@ class NumericalValues extends React.Component<NumericalValuesProps, NumericalVal
           this.props.numericalValues.map((num: any) => {
             return (
               <li key={num.value.toString()}>
-                  {num.label}<br/>
-                  <button
+                <label style={{color:"blue"}}>
+                  {num.label}&emsp;<strong style={{color:"green", fontWeight:"bold"}}>{num.value1}</strong>
+                </label>
+                <button
                     onClick={() => this.props.getNumericalValues(num.value.toString())}>
                   {num.value}
                 </button>
