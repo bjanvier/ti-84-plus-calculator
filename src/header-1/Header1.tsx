@@ -1,32 +1,56 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 
 export interface Header1Props {
-  
+  headerControllers: Array<any>,
+  headerSwitchers: Array<any>
 }
  
 export interface Header1State {
   
 }
  
-class Header1 extends React.Component<Header1Props, Header1State> {
+class Header1 extends Component<Header1Props, Header1State> {
   constructor(props: Header1Props) {
     super(props);
     this.state = {  };
   }
+
   render() { 
     return (
       <div className="header_1_content">
         <section className="helper_operations">
-          <div className="toggle_switchers">
-            <button>2ND</button>
-            <button>ALPHA</button>
-          </div>
-          <div className="controllers">
-            <button>MODE</button>
-            <button>DEL</button>
-            <button>X,T,Ø,n</button>
-            <button>STAT</button>
-          </div>
+          <ul className="toggle_switchers">
+            {
+              this.props.headerSwitchers.map((switcher: any, i: number) => {
+                return (
+                  <li>
+                      <label>
+                        <strong style={{color:"blue"}}>{switcher.value1}</strong>
+                    </label><br/>
+                    <button style={i === 1 ? { background: "blue"} : {background: "green",padding:"6px 19px"}}>
+                      {switcher.value}
+                    </button>
+                  </li>
+                )
+              })
+            }
+          </ul>
+          <ul className="controllers">
+            {
+              this.props.headerControllers.map((controller: any) => {
+                return (
+                  <li>
+                      <label style={{color:"blue"}}>
+                        {controller.label}&emsp;<strong style={{color:"green"}}>{controller.value1}</strong>
+                    </label><br/>
+                    <button>
+                      {controller.value}
+                    </button>
+                  </li>
+                )
+              })
+            }
+          </ul>
         </section>
 
         <div className="directions">

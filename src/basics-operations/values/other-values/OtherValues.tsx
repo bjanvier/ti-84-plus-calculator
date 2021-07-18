@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { renderItemsList } from '../../../helpers/renderList';
 import "./OtherValues.css"
 
 export interface OtherValuesProps {
@@ -7,7 +8,6 @@ export interface OtherValuesProps {
 }
  
 export interface OtherValuesState {
-  
 }
  
 class OtherValues extends React.Component<OtherValuesProps, OtherValuesState> {
@@ -15,24 +15,13 @@ class OtherValues extends React.Component<OtherValuesProps, OtherValuesState> {
     super(props);
     this.state = {   };
   }
-  render() { 
+  render() {
+    const { otherValues, getOtherValues } = this.props;
     return (
       <ul className="other_values_container">
         {
-            this.props.otherValues.map((tf: any) => {
-              return (
-                <li key={tf}>
-                  <label style={{color:"blue"}}>
-
-                  {tf.label}&emsp;<strong style={{color:"green", fontWeight:"bold"}}>{tf.value1}</strong>
-                </label>
-                  <button
-                    onClick={()=>this.props.getOtherValues(tf.value)}>{tf.value}</button>
-                </li>
-              )
-            }
-           )
-          }
+          renderItemsList(otherValues, getOtherValues, "returns the last three bottom buttons")
+        }
       </ul>
       );
   }

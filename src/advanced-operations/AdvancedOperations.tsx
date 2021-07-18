@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { Component } from 'react';
+import { Component, MouseEventHandler } from 'react';
+import { renderItemsList } from '../helpers/renderList';
 export interface AdcancedOperationsProps {
   allAdvancedOptions: Array<any>,
-  getAdvancedOption: any
+  getAdvancedOption: MouseEventHandler<HTMLButtonElement> 
 }
 export interface AdcancedOperationsState {
 }
@@ -12,22 +12,13 @@ class AdvancedOperations extends Component<AdcancedOperationsProps, AdcancedOper
     super(props);
     this.state = {};
   }
+
   render() {
+    const {allAdvancedOptions, getAdvancedOption} = this.props;
     return (
     <ul className="advanced_operations_content">
         {
-            this.props.allAdvancedOptions.map((item: any) => {
-            return (
-              <li>
-                <button style={{color:"wheat"}} 
-                  onClick={()=>this.props.getAdvancedOption(item)}
-                >
-                  {item}
-                </button>
-              </li>
-              
-            )
-          })
+          renderItemsList(allAdvancedOptions, getAdvancedOption, "advanced")
         }
     </ul>
     )

@@ -41,7 +41,6 @@ class Values extends Component<ValuesProps, ValuesState> {
     return (
       <div className="values_container">
         <section>
-
           <TrigValues
             trigFunctions={this.state.trigFunctions}
             getTrigFunc={this.props.getTrigFunc}

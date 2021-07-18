@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { renderItemsList } from '../../../helpers/renderList';
 
 export interface SymbolsProps {
   symbols: any[],
@@ -12,28 +13,17 @@ class Symbols extends Component<SymbolsProps, SymbolsState> {
     super(props);
     this.state = {   };
   }
-  render() { 
+  render() {
+    const { symbols, getSymbols } = this.props;
     return (
       <div>
         <ul className="symbols_values_container">
-        {
-            this.props.symbols.map((symbol: any) => {
-              return (
-                <li key={symbol.value}>
-                  <label>
-                  {symbol.label}&emsp;<strong style={{color:"green", fontWeight:"bold"}}>{symbol.value1}</strong>
-                </label>
-                  <button
-                    onClick={() => this.props.getSymbols(symbol.value)}>{symbol.value}
-                  </button>
-                </li>
-              )
-            }
-           )
+         {
+           renderItemsList(symbols, getSymbols, "symbols")
           }
         </ul>
       </div>
-      );
+    );
   }
 }
 export default Symbols;

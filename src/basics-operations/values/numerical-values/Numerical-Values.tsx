@@ -1,7 +1,7 @@
 import "./numerical-values.css"
 
 import React, { Component } from 'react'
-
+import { renderItemsList } from "../../../helpers/renderList";
 
 export interface NumericalValuesProps {
   getNumericalValues: any,
@@ -19,22 +19,11 @@ class NumericalValues extends React.Component<NumericalValuesProps, NumericalVal
   }
 
   render() {
+    const { numericalValues, getNumericalValues} = this.props
     return (
       <ul className="numerical_values_container">
         {
-          this.props.numericalValues.map((num: any) => {
-            return (
-              <li key={num.value.toString()}>
-                <label style={{color:"blue"}}>
-                  {num.label}&emsp;<strong style={{color:"green", fontWeight:"bold"}}>{num.value1}</strong>
-                </label>
-                <button
-                    onClick={() => this.props.getNumericalValues(num.value.toString())}>
-                  {num.value}
-                </button>
-            </li>
-           )
-          })
+          renderItemsList(numericalValues, getNumericalValues, "returns only numerical values from 1 to 9")
         }
       </ul>
     );

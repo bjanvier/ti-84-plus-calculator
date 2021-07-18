@@ -1,8 +1,9 @@
-import { Component } from 'react';
+import { Component, MouseEventHandler } from 'react';
+import { renderItemsList } from '../../../helpers/renderList';
 
 export interface TrigValuesProps {
   trigFunctions: Array<any>,
-  getTrigFunc: any,
+  getTrigFunc: MouseEventHandler<HTMLButtonElement>,
 }
  
 export interface TrigValuesState {
@@ -14,22 +15,12 @@ class TrigValues extends Component<TrigValuesProps, TrigValuesState> {
     this.state = {  };
   }
 
-  render() { 
+  render() {
+    const { trigFunctions, getTrigFunc} = this.props
     return (
         <ul className="trig_values_container">
           {
-            this.props.trigFunctions.map((tf: any) => {
-              return (
-                <li key={tf}>
-                <label>
-                  {tf.label}&emsp;<strong style={{color:"green", fontWeight:"bold"}}>{tf.value1}</strong>
-                </label>
-                  <button
-                    onClick={()=>this.props.getTrigFunc(tf.value)}>{tf.value}</button>
-                </li>
-              )
-            }
-           )
+           renderItemsList(trigFunctions, getTrigFunc, "trigonometric Functions")
           }
       </ul>
       );

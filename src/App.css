@@ -18,7 +18,8 @@ button{
   font-size: 12px;
 }
 
-button:hover:not(.controllers button),
+button:hover:not( .directions button
+),
 .sidebar > .built_in_functions> li button:hover,
 .assignments > .arithmetic_operations> li button:hover  {
   animation-duration: 15s;
@@ -37,6 +38,8 @@ button:hover:not(.controllers button),
     width: 91%;
   }
 }
+
+
 
 .container{
   display: block;

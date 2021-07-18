@@ -3,6 +3,7 @@ import {
 } from 'react';
 import "./Sidebar.css";
 import { Link } from 'react-router-dom';
+import { renderItemsList } from '../../helpers/renderList';
 
 export interface SidebarProps {
   open: MouseEventHandler<HTMLButtonElement> | undefined,
@@ -23,26 +24,13 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
      };
   }
 
-  render() { 
+  render() {
+    const { builtMathFunctions, getBuiltMathFunctions} = this.props
     return (
       <div className="sidebar" >
           <ul className="built_in_functions">
                 {
-                  this.props.builtMathFunctions.map((func: any, i: number) => {
-                    return (
-                      <li className="">
-                                     
-                        <label style={{ color: "blue" }}>
-                          {func.value1}&emsp;<strong style={{ color: "green", fontWeight: "bold" }}>{func.label}</strong>
-                        </label>
-                        <button onClick={ ()=> this.props.getBuiltMathFunctions(func.value)}>
-                            <strong>
-                              {func.value}
-                            </strong>
-                        </button>
-                      </li>
-                    )
-                  })
+                  renderItemsList(builtMathFunctions, getBuiltMathFunctions, "Rendering the advanced functions on the left side of the calculator")
                 }
               <li className="">
                   <button onClick={this.props.open}  style={{padding: "20px 0",}}>

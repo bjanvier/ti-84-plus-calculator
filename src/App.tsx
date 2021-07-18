@@ -11,7 +11,6 @@ import Header1 from './header-1/Header1';
 import Content from './basics-operations/Content';
 import AdvancedOperations from './advanced-operations/AdvancedOperations';
 import Playground from './playground/Playground';
-import DataSource from './DataSource';
 import Complex from 'complex-js';
 
 interface AppProps{
@@ -30,6 +29,9 @@ interface AppState{
   trigValues: Array<any>,
   arithmeticOperations: Array<any>,
   builtMathFunctions: Array<any>,
+  advancedOperations: Array<any>,
+  headerControllers: Array<any>,
+  headerSwitchers: Array<any>,
 }
 class App extends Component<AppProps, AppState> {
   constructor(props: AppProps) {
@@ -144,8 +146,8 @@ class App extends Component<AppProps, AppState> {
       arithmeticOperations: [
         {
           value: "^",
-          value1:"sin^-1",
-          label: "E"
+          value1:"H",
+          label: "π"
         },
         {
           value: "/",
@@ -195,6 +197,58 @@ class App extends Component<AppProps, AppState> {
           label: "X"
         },
       ],
+      advancedOperations: [
+        {
+          value: "MATH",
+          value1:"TEST",
+          label: "A"
+        },
+        {
+          value: "APPS",
+          value1:"ANGLE",
+          label: "B"
+        },
+        {
+          value: "PRGM",
+          value1:"DRAW",
+          label: "C"
+        },
+        {
+          value: "VARS",
+          value1:"DIST",
+        },
+        {
+          value: "CLEAR",
+        },
+      ],
+      headerControllers: [
+        {
+          value: "MODE",
+          value1: "QUIT",
+          label: ""
+        },
+        {
+          value: "DEL",
+          value1: "INS",
+        },
+        {
+          value: "X,T,Ø,n",
+          value1: "LINK",
+        },
+        {
+          value: "STAT",
+          value1: "LIST",
+        },
+      ],
+      headerSwitchers: [
+        {
+          value: "2ND",
+        },
+        {
+          value: "ALPHA",
+          value1:"A-CLOCK"
+        },
+      ]
     }
   }
 
@@ -308,9 +362,44 @@ class App extends Component<AppProps, AppState> {
   }
   
   render() {
-    const { trigValues, arithmeticOperations, builtMathFunctions } = this.state;
+    const {headerSwitchers, headerControllers, trigValues, arithmeticOperations, builtMathFunctions, advancedOperations } = this.state;
+    const propsContents = {
+      trigValues: trigValues,
+      getTrigFunc: this.getTrigFunc.bind(this),
+      symbols: this.state.symbols,
+      getSymbols: this.getSymbols.bind(this),
+      otherValues: this.state.otherValues,
+      getOtherValues: this.getOtherValues.bind(this),
+      numericalValues: this.state.numericalValues,
+      getNumericalValues: this.getNumericalValues.bind(this),
+      arithmeticOperations: arithmeticOperations,
+      getArithmeticOperations: this.getArithmeticOperations.bind(this),
+      open: this.open.bind(this),
+      toggle: this.state.toggle,
+      getResults: this.getResults.bind(this),
+      builtMathFunctions: builtMathFunctions,
+      getBuiltMathFunctions: this.getBuiltMathFunctions.bind(this),
+    }
+
+    const playgroundProps = {
+      focuserBar: this.state.focuserBar,
+      input: this.state.str,
+      done: this.state.done,
+      clear: this.state.clear,
+      expressions: this.state.expressions
+    }
+
+    const advancedOperationsProps = {
+      allAdvancedOptions:advancedOperations,
+      getAdvancedOption: this.getAdvancedOption.bind(this)
+    }
+
+    const headerControllersProps = {
+      headerControllers: headerControllers,
+      headerSwitchers: headerSwitchers
+    }
+    
     return (
-      
       <div className="App">
         <Router>
           <div className="container">
@@ -325,11 +414,7 @@ class App extends Component<AppProps, AppState> {
                     this.state.on &&
                     <>
                       <Playground
-                        focuserBar={this.state.focuserBar}
-                        input={this.state.str}
-                        done={this.state.done}
-                        clear={this.state.clear}
-                        expressions={this.state.expressions}
+                        {...playgroundProps}
                       />
                     </>
                   }
@@ -343,34 +428,18 @@ class App extends Component<AppProps, AppState> {
             </div>
             <div className="content">
               <section className="header-1">
-                <Header1/>
+                <Header1
+                  {...headerControllersProps}
+                />
                </section>
                 <section className="advanced-operations">
                 <AdvancedOperations
-                  allAdvancedOptions={["MATH", "APPS", "PRGM", "VARS", "CLEAR"]}
-                  getAdvancedOption={this.getAdvancedOption.bind(this)}
+                 {...advancedOperationsProps}
                 />
                 </section>
                 
               <section className="basics_operations_content">
-                <Content
-                  trigValues={trigValues}
-                  getTrigFunc={this.getTrigFunc.bind(this)}
-                  symbols={this.state.symbols}
-                  getSymbols={this.getSymbols.bind(this)}
-                  otherValues={this.state.otherValues}
-                  getOtherValues={this.getOtherValues.bind(this)}
-                  numericalValues={this.state.numericalValues}
-                  getNumericalValues={this.getNumericalValues.bind(this)}
-                  arithmeticOperations={arithmeticOperations}
-                  getArithmeticOperations={this.getArithmeticOperations.bind(this)}
-                  open={this.open.bind(this)}
-                  toggle={this.state.toggle}
-                  getResults={this.getResults.bind(this)}
-                  getBuiltMathFunctions={this.getBuiltMathFunctions.bind(this)}
-                  builtMathFunctions={builtMathFunctions}
-                  // builtMathFunctions={["x^-1", "x^2", "log", "ln", "sto>"]}
-                />
+                <Content {...propsContents}/>
               </section>
             </div>
           </div>
