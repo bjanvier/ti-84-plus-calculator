@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, MouseEventHandler } from 'react';
 import "./Values.css"
 import NumericalValues from './numerical-values/Numerical-Values';
 import OtherValues from './other-values/OtherValues';
@@ -8,13 +8,13 @@ import TrigValues from './trig-values-and-symbols/TrigValues';
 
 export interface ValuesProps {
   trigValues: string[],
-  getTrigFunc: any,
+  getTrigFunc: MouseEventHandler<HTMLButtonElement>,
   symbols: any[]
-  getSymbols: any,
+  getSymbols: MouseEventHandler<HTMLButtonElement>,
   otherValues: any[],
-  getOtherValues: any
+  getOtherValues: MouseEventHandler<HTMLButtonElement>,
   numericalValues: any[]
-  getNumericalValues: any
+  getNumericalValues: MouseEventHandler<HTMLButtonElement>
 }
  
 export interface ValuesState {
@@ -36,7 +36,6 @@ class Values extends Component<ValuesProps, ValuesState> {
      };
   }
 
-
   render() {
     return (
       <div className="values_container">
@@ -54,7 +53,6 @@ class Values extends Component<ValuesProps, ValuesState> {
           <NumericalValues
             numericalValues={this.state.numericalValues}
             getNumericalValues={this.props.getNumericalValues}
-            
           />
           <OtherValues
             otherValues={this.state.otherValues}

@@ -25,13 +25,10 @@ label, strong{
     box-shadow: 0 0 3px rgb(26, 24, 24);
     list-style: none;
     padding:0;
-
 }
 
 .header_1_content .helper_operations .toggle_switchers > * {
    width: 100%;
-   /* margin: 2%; */
-
 }
 
 .header_1_content .helper_operations .controllers{
@@ -41,7 +38,6 @@ label, strong{
     padding:0;
     width:66.6%;
     box-shadow: 0 0 3px rgb(26, 24, 24);
-
 }
 
 .header_1_content .helper_operations .controllers > li{
@@ -67,11 +63,6 @@ label, strong{
     color:#fff;
     box-shadow: 0 0 64px rgb(0, 183, 255) rgb()
 }
-
-.header_1_content .helper_operations .toggle_switchers button{
-    color: white;
-}
-
 
 .header_1_content .helper_operations .controllers > *{
     width: 50%;
@@ -122,19 +113,18 @@ label, strong{
     border-radius: 16px;
     box-shadow: 0 0 34px rgb(61, 60, 60);
     font-weight:bolder;
+    color: #fff;
 }
 
-.toggle_switchers button:first-child {
-    color: #fff;
-    background:rgb(95, 95, 201);
+.toggle_switchers li:nth-child(2) button{
+
+    background:rgba(69, 224, 64, 0.596);
     font-weight: bolder;
 }
 
-.toggle_switchers button:last-child {
-    color: #fff;
-    background:rgb(130, 233, 135);
+.toggle_switchers li:nth-child(1) button {
+    background:rgb(58, 111, 226);
     font-weight: bolder;
-    color: purple;
 }
 
 .toggle_switchers > * {

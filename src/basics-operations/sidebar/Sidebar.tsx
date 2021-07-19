@@ -2,7 +2,7 @@ import {
   MouseEventHandler, Component
 } from 'react';
 import "./Sidebar.css";
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { renderItemsList } from '../../helpers/renderList';
 
 export interface SidebarProps {
@@ -30,7 +30,7 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
       <div className="sidebar" >
           <ul className="built_in_functions">
                 {
-                  renderItemsList(builtMathFunctions, getBuiltMathFunctions, "Rendering the advanced functions on the left side of the calculator")
+                  renderItemsList(builtMathFunctions, getBuiltMathFunctions)
                 }
               <li className="">
                   <button onClick={this.props.open}  style={{padding: "20px 0",}}>

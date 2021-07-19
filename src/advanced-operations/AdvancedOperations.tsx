@@ -1,14 +1,14 @@
 import { Component, MouseEventHandler } from 'react';
 import { renderItemsList } from '../helpers/renderList';
-export interface AdcancedOperationsProps {
+export interface AdvancedOperationsProps {
   allAdvancedOptions: Array<any>,
   getAdvancedOption: MouseEventHandler<HTMLButtonElement> 
 }
-export interface AdcancedOperationsState {
+export interface AdvancedOperationsState {
 }
  
-class AdvancedOperations extends Component<AdcancedOperationsProps, AdcancedOperationsState> {
-  constructor(props: AdcancedOperationsProps) {
+class AdvancedOperations extends Component<AdvancedOperationsProps, AdvancedOperationsState> {
+  constructor(props: AdvancedOperationsProps) {
     super(props);
     this.state = {};
   }
@@ -18,7 +18,7 @@ class AdvancedOperations extends Component<AdcancedOperationsProps, AdcancedOper
     return (
     <ul className="advanced_operations_content">
         {
-          renderItemsList(allAdvancedOptions, getAdvancedOption, "advanced")
+          renderItemsList(allAdvancedOptions, getAdvancedOption)
         }
     </ul>
     )

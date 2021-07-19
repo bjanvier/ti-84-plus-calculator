@@ -32,6 +32,7 @@ interface AppState{
   advancedOperations: Array<any>,
   headerControllers: Array<any>,
   headerSwitchers: Array<any>,
+  allFunctions: Array<any>,
 }
 class App extends Component<AppProps, AppState> {
   constructor(props: AppProps) {
@@ -142,7 +143,6 @@ class App extends Component<AppProps, AppState> {
           label: "G"
         },
       ],
-
       arithmeticOperations: [
         {
           value: "^",
@@ -248,6 +248,33 @@ class App extends Component<AppProps, AppState> {
           value: "ALPHA",
           value1:"A-CLOCK"
         },
+      ],
+      allFunctions:[
+        {
+          value: "Y=",
+          value1:"STAT PLOT",
+          label:"F1",
+        },
+        {
+          value: "WINDOW",
+          value1:"TBLSET",
+          label:"F2",
+        },
+        {
+          value: "ZOOM",
+          value1:"FORMAT",
+          label:"F3",
+        },
+        {
+          value1:"CALC",
+          value: "TRACE",
+          label: "F4",
+        },
+        {
+          value: "GRAPH",
+          value1:"TABLE",
+          label:" F5",
+        }
       ]
     }
   }
@@ -328,7 +355,7 @@ class App extends Component<AppProps, AppState> {
   }
 
   getResults() {
-    const { expressions, str, trigValues } = this.state;
+    const { expressions, str } = this.state;
 
 
     if (this.isMathematicalExp(this.state.str)
@@ -360,9 +387,27 @@ class App extends Component<AppProps, AppState> {
       str: this.state.str+func
     })
   }
+
+  setPlots(plot: any) {
+    this.setState({
+      str: this.state.str+plot
+    })
+  }
+
+  getHeaderSwitchers(switcher: any) {
+    this.setState({
+      str: this.state.str+switcher
+    })
+  }
+
+  getHeaderControllers(controller: any) {
+    this.setState({
+      str: this.state.str+controller
+    })
+  }
   
   render() {
-    const {headerSwitchers, headerControllers, trigValues, arithmeticOperations, builtMathFunctions, advancedOperations } = this.state;
+    const {allFunctions, headerSwitchers, headerControllers, trigValues, arithmeticOperations, builtMathFunctions, advancedOperations } = this.state;
     const propsContents = {
       trigValues: trigValues,
       getTrigFunc: this.getTrigFunc.bind(this),
@@ -396,9 +441,11 @@ class App extends Component<AppProps, AppState> {
 
     const headerControllersProps = {
       headerControllers: headerControllers,
+      getHeaderControllers: this.getHeaderControllers.bind(this),
+      getHeaderSwitchers: this.getHeaderSwitchers.bind(this),
       headerSwitchers: headerSwitchers
     }
-    
+
     return (
       <div className="App">
         <Router>
@@ -422,7 +469,10 @@ class App extends Component<AppProps, AppState> {
               </section>
               <section>
                 <ul>
-                  <Functions/>
+                  <Functions
+                    allFunctions={allFunctions}
+                    setPlots={this.setPlots.bind(this)}
+                  />
                 </ul>
               </section>
             </div>

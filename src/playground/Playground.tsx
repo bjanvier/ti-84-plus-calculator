@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import * as math from 'mathjs';
 import "./Playground.css"
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 const parser = math.parser()
 
 export interface PlaygroundProps {

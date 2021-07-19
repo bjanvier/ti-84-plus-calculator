@@ -1,5 +1,5 @@
 import  { Component } from 'react'
-import Values from './basics-operations/values/Values';
+// import Values from './basics-operations/values/Values';
 
 interface DataSourceState {
   values: string;

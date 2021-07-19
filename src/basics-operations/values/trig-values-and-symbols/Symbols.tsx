@@ -19,7 +19,7 @@ class Symbols extends Component<SymbolsProps, SymbolsState> {
       <div>
         <ul className="symbols_values_container">
          {
-           renderItemsList(symbols, getSymbols, "symbols")
+           renderItemsList(symbols, getSymbols)
           }
         </ul>
       </div>

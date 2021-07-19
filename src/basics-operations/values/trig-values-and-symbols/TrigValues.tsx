@@ -20,7 +20,7 @@ class TrigValues extends Component<TrigValuesProps, TrigValuesState> {
     return (
         <ul className="trig_values_container">
           {
-           renderItemsList(trigFunctions, getTrigFunc, "trigonometric Functions")
+           renderItemsList(trigFunctions, getTrigFunc)
           }
       </ul>
       );

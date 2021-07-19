@@ -1,14 +1,15 @@
-import { Component } from 'react'
+import { Component, MouseEventHandler } from 'react'
+import { renderItemsList } from '../helpers/renderList';
+import "./Header1.css"
 
 export interface Header1Props {
   headerControllers: Array<any>,
-  headerSwitchers: Array<any>
+  headerSwitchers: Array<any>,
+  getHeaderSwitchers: MouseEventHandler<HTMLButtonElement>,
+  getHeaderControllers: MouseEventHandler<HTMLButtonElement>
 }
- 
 export interface Header1State {
-  
 }
- 
 class Header1 extends Component<Header1Props, Header1State> {
   constructor(props: Header1Props) {
     super(props);
@@ -16,39 +17,24 @@ class Header1 extends Component<Header1Props, Header1State> {
   }
 
   render() { 
+    const {
+      headerControllers,
+      headerSwitchers,
+      getHeaderSwitchers,
+      getHeaderControllers
+    } = this.props;
+
     return (
       <div className="header_1_content">
         <section className="helper_operations">
           <ul className="toggle_switchers">
             {
-              this.props.headerSwitchers.map((switcher: any, i: number) => {
-                return (
-                  <li>
-                      <label>
-                        <strong style={{color:"blue"}}>{switcher.value1}</strong>
-                    </label><br/>
-                    <button style={i === 1 ? { background: "blue"} : {background: "green",padding:"6px 19px"}}>
-                      {switcher.value}
-                    </button>
-                  </li>
-                )
-              })
+              renderItemsList(headerSwitchers, getHeaderSwitchers)
             }
           </ul>
           <ul className="controllers">
             {
-              this.props.headerControllers.map((controller: any) => {
-                return (
-                  <li>
-                      <label style={{color:"blue"}}>
-                        {controller.label}&emsp;<strong style={{color:"green"}}>{controller.value1}</strong>
-                    </label><br/>
-                    <button>
-                      {controller.value}
-                    </button>
-                  </li>
-                )
-              })
+              renderItemsList(headerControllers, getHeaderControllers)
             }
           </ul>
         </section>
@@ -56,7 +42,7 @@ class Header1 extends Component<Header1Props, Header1State> {
         <div className="directions">
           <div>
             <div>
-               <button> {"<"} </button>
+              <button> {"<"} </button>
             </div>
             <div>
                <button> ^ </button>

@@ -1,6 +1,6 @@
 import "./numerical-values.css"
 
-import React, { Component } from 'react'
+import  { Component } from 'react'
 import { renderItemsList } from "../../../helpers/renderList";
 
 export interface NumericalValuesProps {
@@ -11,7 +11,7 @@ export interface NumericalValuesProps {
 export interface NumericalValuesState {
 }
  
-class NumericalValues extends React.Component<NumericalValuesProps, NumericalValuesState> {
+class NumericalValues extends Component<NumericalValuesProps, NumericalValuesState> {
   constructor(props: NumericalValuesProps) {
     super(props);
     this.state = {
@@ -23,7 +23,7 @@ class NumericalValues extends React.Component<NumericalValuesProps, NumericalVal
     return (
       <ul className="numerical_values_container">
         {
-          renderItemsList(numericalValues, getNumericalValues, "returns only numerical values from 1 to 9")
+          renderItemsList(numericalValues, getNumericalValues)
         }
       </ul>
     );

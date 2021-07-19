@@ -24,7 +24,7 @@ class Assignments extends React.Component<AssignmentsProps, AssignmentsState> {
       
         <ul className="arithmetic_operations">
           {
-            renderItemsList(arithmeticOperations, getArithmeticOperations, "assignments")
+            renderItemsList(arithmeticOperations, getArithmeticOperations)
           }
           <li className="">
               <button onClick={this.props.getResults}  style={{padding: "20px 0",}}>
