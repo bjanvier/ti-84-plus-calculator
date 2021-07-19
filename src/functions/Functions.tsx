@@ -3,9 +3,9 @@ import { renderItemsList } from '../helpers/renderList';
 
 export interface FunctionsProps {
   setPlots: MouseEventHandler<HTMLButtonElement>,
-  allFunctions: Array<any>
+  allFunctions: Array<any>,
+  secondFuncOn: boolean
 }
-
  
 export interface FunctionsStates {
   // allFunctions:any[]
@@ -20,11 +20,11 @@ class Functions extends Component<FunctionsProps, FunctionsStates> {
   }
 
   render() {
-    const { allFunctions, setPlots } = this.props;
+    const { allFunctions, setPlots, secondFuncOn } = this.props;
     return ( 
       <ul>  
           {
-            renderItemsList(allFunctions, setPlots)
+            renderItemsList(allFunctions, setPlots, secondFuncOn)
           }
       </ul>
      );

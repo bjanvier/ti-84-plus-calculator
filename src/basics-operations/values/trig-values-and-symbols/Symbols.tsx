@@ -3,7 +3,8 @@ import { renderItemsList } from '../../../helpers/renderList';
 
 export interface SymbolsProps {
   symbols: any[],
-  getSymbols:any
+  getSymbols: any,
+  secondFuncOn: boolean
 }
 export interface SymbolsState {
   
@@ -14,12 +15,12 @@ class Symbols extends Component<SymbolsProps, SymbolsState> {
     this.state = {   };
   }
   render() {
-    const { symbols, getSymbols } = this.props;
+    const { symbols, getSymbols, secondFuncOn } = this.props;
     return (
       <div>
         <ul className="symbols_values_container">
          {
-           renderItemsList(symbols, getSymbols)
+           renderItemsList(symbols, getSymbols, secondFuncOn)
           }
         </ul>
       </div>

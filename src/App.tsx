@@ -12,7 +12,6 @@ import Content from './basics-operations/Content';
 import AdvancedOperations from './advanced-operations/AdvancedOperations';
 import Playground from './playground/Playground';
 import Complex from 'complex-js';
-
 interface AppProps{
 }
 interface AppState{
@@ -33,11 +32,15 @@ interface AppState{
   headerControllers: Array<any>,
   headerSwitchers: Array<any>,
   allFunctions: Array<any>,
+  secondFuncOn: boolean,
+  counter: number,
 }
 class App extends Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
     this.state = {
+      counter: 0,
+      secondFuncOn: false,
       expressions: [],
       on: false,
       done: false,
@@ -280,6 +283,10 @@ class App extends Component<AppProps, AppState> {
   }
 
   open(): void {
+    this.incrementCounter()
+
+    this.resetSecondFunction();
+
     if (this.state.expressions.length === 0) {
       this.setState({ focuserBar: "|"})
     }
@@ -292,12 +299,18 @@ class App extends Component<AppProps, AppState> {
   }
 
   getTrigFunc(tf: any) {
+    this.incrementCounter()
+    this.resetSecondFunction();
+
     this.setState({
       str: this.state.str+tf
     })
   }
 
   getSymbols(symbol: any) {
+    this.incrementCounter();
+    this.resetSecondFunction();
+
     console.log(symbol)
     this.setState({
       str: this.state.str+symbol
@@ -305,6 +318,9 @@ class App extends Component<AppProps, AppState> {
   }
 
   getOtherValues(value: any) {
+    this.incrementCounter();
+    this.resetSecondFunction();
+
     if (value === "(-)") {
       this.setState({
         str: this.state.str+"-"
@@ -317,18 +333,27 @@ class App extends Component<AppProps, AppState> {
   }
 
   getNumericalValues(num: any) {
+    this.incrementCounter();
+    this.resetSecondFunction();
+
     this.setState({
       str: this.state.str+num
     })
   }
 
-  getArithmeticOperations(operation:any) {
+  getArithmeticOperations(operation: any) {
+    this.incrementCounter();
+    this.resetSecondFunction();
+    
     this.setState({
       str: this.state.str+operation
     })
   }
   
   getAdvancedOption(option: any) {
+    this.incrementCounter();
+    this.resetSecondFunction();
+
     if (option === "CLEAR") {
 
       this.setState((state) => {
@@ -355,6 +380,10 @@ class App extends Component<AppProps, AppState> {
   }
 
   getResults() {
+    this.incrementCounter()
+    this.resetSecondFunction();
+
+
     const { expressions, str } = this.state;
 
 
@@ -383,31 +412,67 @@ class App extends Component<AppProps, AppState> {
   }
 
   getBuiltMathFunctions(func: any) {
+    this.resetSecondFunction();
+    this.incrementCounter();
     this.setState({
       str: this.state.str+func
     })
   }
 
   setPlots(plot: any) {
+    this.incrementCounter();
+    this.resetSecondFunction()
     this.setState({
       str: this.state.str+plot
     })
   }
 
-  getHeaderSwitchers(switcher: any) {
-    this.setState({
-      str: this.state.str+switcher
+  //Reset second function button to false once the user clicks more than one button
+  //after it was activated
+  resetSecondFunction() {
+    const { secondFuncOn, counter } = this.state;
+    
+    if (secondFuncOn && counter >= 1) {
+      this.setState({
+         secondFuncOn: false,
+         counter: 0
+      })
+    }
+  }
+
+  incrementCounter() {
+    return this.setState({
+      counter: this.state.counter+1
     })
   }
 
+  getHeaderSwitchers(switcher: any) {
+    this.incrementCounter();
+    this.resetSecondFunction();
+
+    if (switcher === "2ND") {
+       this.setState(state => ({
+        secondFuncOn: !state.secondFuncOn
+      }))
+    }
+  }
+
   getHeaderControllers(controller: any) {
+    this.resetSecondFunction();
+    this.incrementCounter()
+
     this.setState({
       str: this.state.str+controller
     })
   }
   
   render() {
-    const {allFunctions, headerSwitchers, headerControllers, trigValues, arithmeticOperations, builtMathFunctions, advancedOperations } = this.state;
+    const {
+      secondFuncOn,
+      allFunctions,
+      headerSwitchers,
+      headerControllers, trigValues, arithmeticOperations, builtMathFunctions, advancedOperations } = this.state;
+    
     const propsContents = {
       trigValues: trigValues,
       getTrigFunc: this.getTrigFunc.bind(this),
@@ -470,6 +535,8 @@ class App extends Component<AppProps, AppState> {
               <section>
                 <ul>
                   <Functions
+                    secondFuncOn={secondFuncOn}
+                    
                     allFunctions={allFunctions}
                     setPlots={this.setPlots.bind(this)}
                   />
@@ -479,17 +546,23 @@ class App extends Component<AppProps, AppState> {
             <div className="content">
               <section className="header-1">
                 <Header1
+                secondFuncOn={secondFuncOn}
                   {...headerControllersProps}
                 />
                </section>
                 <section className="advanced-operations">
                 <AdvancedOperations
+                secondFuncOn={secondFuncOn}
+
                  {...advancedOperationsProps}
                 />
                 </section>
                 
               <section className="basics_operations_content">
-                <Content {...propsContents}/>
+                <Content
+                  secondFuncOn={secondFuncOn}
+                  {...propsContents}
+                />
               </section>
             </div>
           </div>

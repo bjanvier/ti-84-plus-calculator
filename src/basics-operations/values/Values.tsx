@@ -15,6 +15,7 @@ export interface ValuesProps {
   getOtherValues: MouseEventHandler<HTMLButtonElement>,
   numericalValues: any[]
   getNumericalValues: MouseEventHandler<HTMLButtonElement>
+  secondFuncOn: boolean
 }
  
 export interface ValuesState {
@@ -37,24 +38,29 @@ class Values extends Component<ValuesProps, ValuesState> {
   }
 
   render() {
+    const {secondFuncOn } = this.props
     return (
       <div className="values_container">
         <section>
           <TrigValues
+            secondFuncOn={this.props.secondFuncOn}
             trigFunctions={this.state.trigFunctions}
             getTrigFunc={this.props.getTrigFunc}
           />
           <Symbols
+            secondFuncOn={secondFuncOn}
             symbols={this.state.symbols}
             getSymbols={this.props.getSymbols}
           />
         </section>
         <section>
           <NumericalValues
+            secondFuncOn={secondFuncOn}
             numericalValues={this.state.numericalValues}
             getNumericalValues={this.props.getNumericalValues}
           />
           <OtherValues
+            secondFuncOn={secondFuncOn}
             otherValues={this.state.otherValues}
             getOtherValues={this.props.getOtherValues}
           />

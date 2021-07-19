@@ -4,6 +4,7 @@ import { renderItemsList } from '../../../helpers/renderList';
 export interface TrigValuesProps {
   trigFunctions: Array<any>,
   getTrigFunc: MouseEventHandler<HTMLButtonElement>,
+  secondFuncOn: boolean
 }
  
 export interface TrigValuesState {
@@ -16,11 +17,11 @@ class TrigValues extends Component<TrigValuesProps, TrigValuesState> {
   }
 
   render() {
-    const { trigFunctions, getTrigFunc} = this.props
+    const { trigFunctions, getTrigFunc, secondFuncOn} = this.props
     return (
         <ul className="trig_values_container">
           {
-           renderItemsList(trigFunctions, getTrigFunc)
+           renderItemsList(trigFunctions, getTrigFunc, secondFuncOn)
           }
       </ul>
       );

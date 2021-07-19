@@ -6,7 +6,8 @@ export interface Header1Props {
   headerControllers: Array<any>,
   headerSwitchers: Array<any>,
   getHeaderSwitchers: MouseEventHandler<HTMLButtonElement>,
-  getHeaderControllers: MouseEventHandler<HTMLButtonElement>
+  getHeaderControllers: MouseEventHandler<HTMLButtonElement>,
+  secondFuncOn: boolean
 }
 export interface Header1State {
 }
@@ -21,7 +22,7 @@ class Header1 extends Component<Header1Props, Header1State> {
       headerControllers,
       headerSwitchers,
       getHeaderSwitchers,
-      getHeaderControllers
+      getHeaderControllers, secondFuncOn 
     } = this.props;
 
     return (
@@ -29,12 +30,12 @@ class Header1 extends Component<Header1Props, Header1State> {
         <section className="helper_operations">
           <ul className="toggle_switchers">
             {
-              renderItemsList(headerSwitchers, getHeaderSwitchers)
+              renderItemsList(headerSwitchers, getHeaderSwitchers, secondFuncOn)
             }
           </ul>
           <ul className="controllers">
             {
-              renderItemsList(headerControllers, getHeaderControllers)
+              renderItemsList(headerControllers, getHeaderControllers, secondFuncOn)
             }
           </ul>
         </section>

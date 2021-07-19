@@ -5,7 +5,8 @@ import { renderItemsList } from "../../../helpers/renderList";
 
 export interface NumericalValuesProps {
   getNumericalValues: any,
-  numericalValues: Array<any>
+  numericalValues: Array<any>,
+  secondFuncOn: boolean
 }
  
 export interface NumericalValuesState {
@@ -19,11 +20,11 @@ class NumericalValues extends Component<NumericalValuesProps, NumericalValuesSta
   }
 
   render() {
-    const { numericalValues, getNumericalValues} = this.props
+    const { numericalValues, getNumericalValues, secondFuncOn} = this.props
     return (
       <ul className="numerical_values_container">
         {
-          renderItemsList(numericalValues, getNumericalValues)
+          renderItemsList(numericalValues, getNumericalValues, secondFuncOn)
         }
       </ul>
     );

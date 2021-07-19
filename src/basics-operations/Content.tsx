@@ -20,6 +20,7 @@ export interface ContentProps {
   toggle: boolean,
   getBuiltMathFunctions: MouseEventHandler<HTMLButtonElement>,
   builtMathFunctions: Array<any>
+  secondFuncOn: boolean,
 }
 
 export interface ContentState {
@@ -54,15 +55,20 @@ class Content extends Component<ContentProps, ContentState> {
       arithmeticOperations: this.props.arithmeticOperations,
       getArithmeticOperations: this.props.getArithmeticOperations,
     }
+    const { secondFuncOn } = this.props
+    
     return (
       <>
         <Sidebar
+            secondFuncOn={secondFuncOn}
           {...sidebarProps}
         />
         <Values
+          secondFuncOn={secondFuncOn}
           {...valuesProps}
         />
         <Assignments
+            secondFuncOn={secondFuncOn}
           {...assignmentsProps}
         />
       </>

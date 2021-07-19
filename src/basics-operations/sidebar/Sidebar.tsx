@@ -9,7 +9,8 @@ export interface SidebarProps {
   open: MouseEventHandler<HTMLButtonElement> | undefined,
   toggle: boolean
   getBuiltMathFunctions: any,
-  builtMathFunctions: Array<any>
+  builtMathFunctions: Array<any>,
+  secondFuncOn: boolean
 }
 
 export interface SidebarState {
@@ -25,12 +26,12 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
   }
 
   render() {
-    const { builtMathFunctions, getBuiltMathFunctions} = this.props
+    const { builtMathFunctions, getBuiltMathFunctions, secondFuncOn} = this.props
     return (
       <div className="sidebar" >
           <ul className="built_in_functions">
                 {
-                  renderItemsList(builtMathFunctions, getBuiltMathFunctions)
+                  renderItemsList(builtMathFunctions, getBuiltMathFunctions, secondFuncOn)
                 }
               <li className="">
                   <button onClick={this.props.open}  style={{padding: "20px 0",}}>

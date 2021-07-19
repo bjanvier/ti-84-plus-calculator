@@ -4,7 +4,8 @@ import "./OtherValues.css"
 
 export interface OtherValuesProps {
   getOtherValues: any,
-  otherValues:any
+  otherValues: any,
+  secondFuncOn: boolean
 }
  
 export interface OtherValuesState {
@@ -16,11 +17,11 @@ class OtherValues extends Component<OtherValuesProps, OtherValuesState> {
     this.state = {   };
   }
   render() {
-    const { otherValues, getOtherValues } = this.props;
+    const { otherValues, getOtherValues, secondFuncOn } = this.props;
     return (
       <ul className="other_values_container">
         {
-          renderItemsList(otherValues, getOtherValues)
+          renderItemsList(otherValues, getOtherValues, secondFuncOn)
         }
       </ul>
       );
