@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/ti-84-plus-calculator/static/css/main.e2099143.chunk.css",
+    "main.js": "/ti-84-plus-calculator/static/js/main.36a55c41.chunk.js",
+    "main.js.map": "/ti-84-plus-calculator/static/js/main.36a55c41.chunk.js.map",
+    "runtime-main.js": "/ti-84-plus-calculator/static/js/runtime-main.25eedeb0.js",
+    "runtime-main.js.map": "/ti-84-plus-calculator/static/js/runtime-main.25eedeb0.js.map",
+    "static/js/2.7c9e593a.chunk.js": "/ti-84-plus-calculator/static/js/2.7c9e593a.chunk.js",
+    "static/js/2.7c9e593a.chunk.js.map": "/ti-84-plus-calculator/static/js/2.7c9e593a.chunk.js.map",
+    "static/js/3.c51a1ebb.chunk.js": "/ti-84-plus-calculator/static/js/3.c51a1ebb.chunk.js",
+    "static/js/3.c51a1ebb.chunk.js.map": "/ti-84-plus-calculator/static/js/3.c51a1ebb.chunk.js.map",
+    "index.html": "/ti-84-plus-calculator/index.html",
+    "static/css/main.e2099143.chunk.css.map": "/ti-84-plus-calculator/static/css/main.e2099143.chunk.css.map",
+    "static/js/2.7c9e593a.chunk.js.LICENSE.txt": "/ti-84-plus-calculator/static/js/2.7c9e593a.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.25eedeb0.js",
+    "static/js/2.7c9e593a.chunk.js",
+    "static/css/main.e2099143.chunk.css",
+    "static/js/main.36a55c41.chunk.js"
+  ]
+}
