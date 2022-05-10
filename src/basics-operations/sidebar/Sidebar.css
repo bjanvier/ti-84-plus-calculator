@@ -1,27 +1,21 @@
-.sidebar,  .assignments{
-    padding: 0;
-}
-
 
 .sidebar > .built_in_functions,
 .assignments > .arithmetic_operations
 {
-    padding: 0;
     width: 100%;
     display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: space-around;
     flex-direction: column;
-    list-style: none;
 }
 
 .sidebar > .built_in_functions > li,
-.assignments > .arithmetic_operations > li
-{
-    padding: 7px 0;
-    width:100%
+.assignments > .arithmetic_operations > li{
+    width:100%;
+    margin: 1%;
 }
 
-.sidebar > .built_in_functions > li button
-{
+.sidebar > .built_in_functions > li button{
     width: 90%;
     padding: 6px;
     color: white;

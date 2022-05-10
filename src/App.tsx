@@ -12,6 +12,7 @@ import Content from './basics-operations/Content';
 import AdvancedOperations from './advanced-operations/AdvancedOperations';
 import Playground from './playground/Playground';
 import Complex from 'complex-js';
+import { DATA } from './data';
 interface AppProps{
 }
 interface AppState{
@@ -48,237 +49,16 @@ class App extends Component<AppProps, AppState> {
       focuserBar:"",
       toggle: false,
       clear: false,
-      numericalValues: [
-        {
-          value: 7,
-          value1:"u",
-          label: "O"
-        },
-        {
-          value: 8,
-          value1:"v",
-          label: "P"
-        },
-        {
-          value: 9,
-          value1:"w",
-          label: "Q"
-        },
-        {
-          value: 4,
-          value1:"L4",
-          label: "T"
-        },
-        {
-          value: 5,
-          value1:"L5",
-          label: "U"
-        },
-        {
-          value: 6,
-          value1:"L6",
-          label: "V"
-        },
-        {
-          value: 1,
-          value1:"L1",
-          label: "Y"
-        },
-        {
-          value: 2,
-          value1:"L2",
-          label: "Z"
-        },
-        {
-          value: 3,
-          value1:"L3",
-          label: "Ø"
-        },
-      ],
-      otherValues: [
-        {
-          value: "0",
-          value1:"~",
-          label: "Catalog"
-        },
-        {
-          value: ".",
-          value1:":",
-          label: "i"
-        },
-        {
-          value: "(-)",
-          value1:"?",
-          label: "Ans"
-        },
-      ],
-      symbols: [
-        {
-          value: ",",
-          value1:"J",
-          label: "EE"
-        },
-        {
-          value: "(",
-          value1:"K",
-          label: "{"
-        },
-        {
-          value: ")",
-          value1:"L",
-          label: "}"
-        },
-      ],
-      trigValues: [
-        {
-          value: "sin",
-          value1:"sin^-1",
-          label: "E"
-        },
-        {
-          value: "cos",
-          value1:"cos^-1",
-          label: "F"
-        },
-        {
-          value: "tan",
-          value1:"tan^-1",
-          label: "G"
-        },
-      ],
-      arithmeticOperations: [
-        {
-          value: "^",
-          value1:"H",
-          label: "π"
-        },
-        {
-          value: "/",
-          value1:"e",
-          label: "M"
-        },
-        {
-          value: "*",
-          value1:"[",
-          label: "R"
-        },
-        {
-          value: "-",
-          value1:"]",
-          label: "W"
-        },
-        {
-          value: "+",
-          value1:"MEM",
-          label: "''"
-        },
-      ],
-      builtMathFunctions:[
-        {
-          value: "x^-1",
-          value1:"MATRIX",
-          label: "D"
-        },
-        {
-          value: "x^2",
-          value1:"sqrt",
-          label: "I"
-        },
-        {
-          value: "log",
-          value1:"10^x N",
-          label: "R"
-        },
-        {
-          value: "ln",
-          value1:"e^x",
-          label: "S"
-        },
-        {
-          value: "sto>",
-          value1:"rcl",
-          label: "X"
-        },
-      ],
-      advancedOperations: [
-        {
-          value: "MATH",
-          value1:"TEST",
-          label: "A"
-        },
-        {
-          value: "APPS",
-          value1:"ANGLE",
-          label: "B"
-        },
-        {
-          value: "PRGM",
-          value1:"DRAW",
-          label: "C"
-        },
-        {
-          value: "VARS",
-          value1:"DIST",
-        },
-        {
-          value: "CLEAR",
-        },
-      ],
-      headerControllers: [
-        {
-          value: "MODE",
-          value1: "QUIT",
-          label: ""
-        },
-        {
-          value: "DEL",
-          value1: "INS",
-        },
-        {
-          value: "X,T,Ø,n",
-          value1: "LINK",
-        },
-        {
-          value: "STAT",
-          value1: "LIST",
-        },
-      ],
-      headerSwitchers: [
-        {
-          value: "2ND",
-        },
-        {
-          value: "ALPHA",
-          value1:"A-CLOCK"
-        },
-      ],
-      allFunctions:[
-        {
-          value: "Y=",
-          value1:"STAT PLOT",
-          label:"F1",
-        },
-        {
-          value: "WINDOW",
-          value1:"TBLSET",
-          label:"F2",
-        },
-        {
-          value: "ZOOM",
-          value1:"FORMAT",
-          label:"F3",
-        },
-        {
-          value1:"CALC",
-          value: "TRACE",
-          label: "F4",
-        },
-        {
-          value: "GRAPH",
-          value1:"TABLE",
-          label:" F5",
-        }
-      ]
+      numericalValues: DATA.numerical,
+      otherValues:DATA.others,
+      symbols: DATA.symbols,
+      trigValues: DATA.trigFunctions,
+      arithmeticOperations: DATA.arithmeticOperations,
+      builtMathFunctions: DATA.builtMathFunctions,
+      advancedOperations: DATA.advancedOperations,
+      headerControllers: DATA.headerControllers,
+      headerSwitchers: DATA.headerSwitchers,
+      allFunctions:DATA.allFunctions
     }
   }
 
@@ -471,32 +251,36 @@ class App extends Component<AppProps, AppState> {
       secondFuncOn,
       allFunctions,
       headerSwitchers,
-      headerControllers, trigValues, arithmeticOperations, builtMathFunctions, advancedOperations } = this.state;
+      headerControllers, trigValues, arithmeticOperations,
+      builtMathFunctions, advancedOperations,
+      otherValues, symbols, numericalValues,
+      toggle, done, clear,
+    str, focuserBar, expressions } = this.state;
     
     const propsContents = {
       trigValues: trigValues,
       getTrigFunc: this.getTrigFunc.bind(this),
-      symbols: this.state.symbols,
+      symbols: symbols,
       getSymbols: this.getSymbols.bind(this),
-      otherValues: this.state.otherValues,
+      otherValues: otherValues,
       getOtherValues: this.getOtherValues.bind(this),
-      numericalValues: this.state.numericalValues,
+      numericalValues: numericalValues,
       getNumericalValues: this.getNumericalValues.bind(this),
       arithmeticOperations: arithmeticOperations,
       getArithmeticOperations: this.getArithmeticOperations.bind(this),
       open: this.open.bind(this),
-      toggle: this.state.toggle,
+      toggle: toggle,
       getResults: this.getResults.bind(this),
       builtMathFunctions: builtMathFunctions,
       getBuiltMathFunctions: this.getBuiltMathFunctions.bind(this),
     }
 
     const playgroundProps = {
-      focuserBar: this.state.focuserBar,
-      input: this.state.str,
-      done: this.state.done,
-      clear: this.state.clear,
-      expressions: this.state.expressions
+      focuserBar: focuserBar,
+      input: str,
+      done: done,
+      clear: clear,
+      expressions: expressions
     }
 
     const advancedOperationsProps = {
@@ -517,10 +301,8 @@ class App extends Component<AppProps, AppState> {
           <div className="container">
             <div className="header">
               <section>
-                <div>
                   <h1>TI-84 Plus</h1>
                   <h2>TEXAS INSTRUMENTS</h2>
-                </div>
                 <div className="playground">
                   {
                     this.state.on &&
@@ -536,7 +318,6 @@ class App extends Component<AppProps, AppState> {
                 <ul>
                   <Functions
                     secondFuncOn={secondFuncOn}
-                    
                     allFunctions={allFunctions}
                     setPlots={this.setPlots.bind(this)}
                   />
@@ -546,7 +327,7 @@ class App extends Component<AppProps, AppState> {
             <div className="content">
               <section className="header-1">
                 <Header1
-                secondFuncOn={secondFuncOn}
+                  secondFuncOn={secondFuncOn}
                   {...headerControllersProps}
                 />
                </section>

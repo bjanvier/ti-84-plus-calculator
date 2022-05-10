@@ -25,7 +25,6 @@ export interface ValuesState {
   numericalValues: any[]
 }
 
-
 class Values extends Component<ValuesProps, ValuesState> {
   constructor(props: ValuesProps) {
     super(props);
@@ -38,31 +37,33 @@ class Values extends Component<ValuesProps, ValuesState> {
   }
 
   render() {
-    const {secondFuncOn } = this.props
+    const {secondFuncOn,symbols, getSymbols, getTrigFunc,getNumericalValues, getOtherValues } = this.props
+    const {trigFunctions,numericalValues,otherValues } = this.state
+
     return (
       <div className="values_container">
         <section>
           <TrigValues
-            secondFuncOn={this.props.secondFuncOn}
-            trigFunctions={this.state.trigFunctions}
-            getTrigFunc={this.props.getTrigFunc}
+            secondFuncOn={secondFuncOn}
+            trigFunctions={trigFunctions}
+            getTrigFunc={getTrigFunc}
           />
           <Symbols
             secondFuncOn={secondFuncOn}
-            symbols={this.state.symbols}
-            getSymbols={this.props.getSymbols}
+            symbols={symbols}
+            getSymbols={getSymbols}
           />
         </section>
         <section>
           <NumericalValues
             secondFuncOn={secondFuncOn}
-            numericalValues={this.state.numericalValues}
-            getNumericalValues={this.props.getNumericalValues}
+            numericalValues={numericalValues}
+            getNumericalValues={getNumericalValues}
           />
           <OtherValues
             secondFuncOn={secondFuncOn}
-            otherValues={this.state.otherValues}
-            getOtherValues={this.props.getOtherValues}
+            otherValues={otherValues}
+            getOtherValues={getOtherValues}
           />
         </section>
       </div>

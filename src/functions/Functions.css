@@ -3,14 +3,12 @@
     display: relative;
     display: flex;
     flex-wrap: wrap;
-    min-width: 300px;
-    /* max-width: 320px; */
-    height: 275px;
+    height: fit-content;
     background: rgb(223, 222, 222);
     border-top-left-radius: 33px;
     border-top-right-radius: 33px;
+    padding: 2%;
   }
-  
 
   .container .header > section:nth-child(1) {
     width: 100%;
@@ -34,8 +32,14 @@
     margin: 0 auto;
     height: 120px;
     overflow: scroll;
+    padding:0;
   }
   
+  .playground > *{
+    height: fit-content;
+    padding: 2%;
+  }
+
   .container .header > section:nth-child(2)
   {
     width: 100%;

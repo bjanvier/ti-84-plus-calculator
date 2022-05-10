@@ -40,21 +40,13 @@ class Header1 extends Component<Header1Props, Header1State> {
           </ul>
         </section>
 
-        <div className="directions">
-          <div>
-            <div>
-              <button> {"<"} </button>
-            </div>
-            <div>
-               <button> ^ </button>
-                <button>M</button>
-                <button> {"v"} </button>
-            </div>
-            <div>
-              <button> {">"} </button>
-            </div>
-          </div>
-        </div>
+        <aside className="directions">
+          <button className="left_arrow"> {"<"} </button>
+          <button className="top_arrow"> ^ </button>
+          <button className="center_arrow">M</button>
+          <button className="right_arrow"> {">"} </button>
+          <button className="bottom_arrow"> {"v"} </button>
+        </aside>
       </div>
      );
   }

@@ -1,7 +1,8 @@
 .other_values_container{
     padding: 0;
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+    justify-content: space-evenly;
     width:100%;
 }
 

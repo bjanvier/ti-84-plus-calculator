@@ -7,25 +7,16 @@ export interface FunctionsProps {
   secondFuncOn: boolean
 }
  
-export interface FunctionsStates {
-  // allFunctions:any[]
-}
- 
-class Functions extends Component<FunctionsProps, FunctionsStates> {
+class Functions extends Component<FunctionsProps, {}> {
   constructor(props: FunctionsProps) {
     super(props);
-    this.state = {
-
-    };
   }
 
   render() {
     const { allFunctions, setPlots, secondFuncOn } = this.props;
     return ( 
       <ul>  
-          {
-            renderItemsList(allFunctions, setPlots, secondFuncOn)
-          }
+          {renderItemsList(allFunctions, setPlots, secondFuncOn)}
       </ul>
      );
   }

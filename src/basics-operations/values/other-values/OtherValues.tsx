@@ -8,23 +8,18 @@ export interface OtherValuesProps {
   secondFuncOn: boolean
 }
  
-export interface OtherValuesState {
-}
- 
-class OtherValues extends Component<OtherValuesProps, OtherValuesState> {
+class OtherValues extends Component<OtherValuesProps,{}> {
   constructor(props: OtherValuesProps) {
     super(props);
-    this.state = {   };
   }
   render() {
     const { otherValues, getOtherValues, secondFuncOn } = this.props;
     return (
-      <ul className="other_values_container">
-        {
+      <ul className="other_values_container">{
           renderItemsList(otherValues, getOtherValues, secondFuncOn)
         }
       </ul>
-      );
+    );
   }
 }
 export default OtherValues;

@@ -1,21 +1,25 @@
 .header_1_content{
     position: relative;
     height: 110px;
-}
-
-ul{
-    list-style: none;
+    display:flex;
+    flex-wrap: wrap;
 }
 
 label, strong{
-    font-size: 10px;
+    font-size: 1.7vmax;
 }
 
-.header_1_content .helper_operations{
+.header_1_content >.helper_operations{
     display:flex;
     flex-wrap: wrap;
     flex-grow: 3;
     width: 60%;
+}
+
+.header_1_content > .directions{
+    position: relative;
+    width: 40%;
+    border-radius: 100%;
 }
 
 .header_1_content .helper_operations .toggle_switchers{
@@ -41,9 +45,8 @@ label, strong{
 }
 
 .header_1_content .helper_operations .controllers > li{
-    width:50%
+    width:50%;
 }
-
 
 .header_1_content .helper_operations >* button
 {
@@ -69,42 +72,41 @@ label, strong{
     margin: 0 auto;
 }
 
-.header_1_content .directions{
-    width:40%;
-    border-radius: 100%;
-}
-
-.header_1_content .directions > div{
-    position: absolute;
-    top: 10%;
-    right:8%;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display:flex;
-    justify-content: space-evenly;
-    flex-grow: 2;
-    box-shadow:0 0 42px rgb(53, 52, 52);
-    justify-content: center;
-    align-items: center;
-}
-
 .header_1_content .directions  button {
-    background: white;
-    color: black;
+    position: absolute;
+    background: black;
+    color: rgb(163, 163, 163);
     border: none;
-    border-radius: 16px;
     box-shadow: 0 0 34px rgb(61, 60, 60);
     font-weight:bolder;
 }
 
-.header_1_content .directions > div> div > button:nth-child(1),
-.header_1_content .directions> div > div>button:last-child
-{
-    width: 45px;
-    height: 40px;
-    border-radius:50%
+.header_1_content .directions >  button{
 }
+.right_arrow{
+    right:5%;
+    top: 45%;
+}
+
+.left_arrow{
+    left: 5%;
+    top: 45%;
+}
+
+.top_arrow{
+    left: 45%;
+    top: 5%;
+}
+
+.bottom_arrow{
+    left: 45%;
+    bottom: 5%;
+}
+
+.center_arrow{
+    left: 45%; top: 45%;
+}
+
 
 .toggle_switchers button{
     width: 90%;

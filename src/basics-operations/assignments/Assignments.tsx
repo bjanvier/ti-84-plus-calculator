@@ -9,11 +9,7 @@ export interface AssignmentsProps {
   secondFuncOn: boolean
 }
  
-export interface AssignmentsState {
-  
-}
-
-class Assignments extends React.Component<AssignmentsProps, AssignmentsState> {
+class Assignments extends React.Component<AssignmentsProps, {}> {
   constructor(props: AssignmentsProps) {
     super(props);
     this.state = {  };

@@ -4,9 +4,9 @@ export function renderItemsList(arr: Array<any>, getItems: MouseEventHandler<HTM
   return arr.map((item: any, i: number) => {
     return (
       <li key={item.value}>
-        <label style={{color:"blue"}}>
+        <span style={{color:"blue"}}>
           {item.value1}&emsp;<strong style={{color:"green"}}>{item.label}</strong>
-        </label>
+        </span>
         <button
             onClick={() => getItems( !secondFuncOn ? item.value : item.value1)}>{item.value}
         </button>
