@@ -1,5 +1,5 @@
 
-interface ButtonValues{
+export interface ButtonValues{
     value: number | string
     value1: string
     label: string

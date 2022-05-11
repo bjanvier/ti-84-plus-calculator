@@ -8,7 +8,10 @@ import AdvancedOperations from './advanced-operations/AdvancedOperations';
 import Playground from './playground/Playground';
 import Complex from 'complex-js';
 import { DATA } from './data';
-import { PlaygroundContext } from './context';
+import { AssignmentContext, PlaygroundContext, SidebarContext, ValuesContext } from './context';
+import Assignments from './basics-operations/assignments/Assignments';
+import Values from './basics-operations/values/Values';
+import Sidebar from './basics-operations/sidebar/Sidebar';
 interface AppProps{
 }
 interface AppState{
@@ -58,7 +61,7 @@ class App extends Component<AppProps, AppState> {
     }
   }
 
-  open(): void {
+  open =()=> {
     this.incrementCounter()
 
     this.resetSecondFunction();
@@ -74,7 +77,7 @@ class App extends Component<AppProps, AppState> {
     })
   }
 
-  getTrigFunc(tf: any) {
+  getTrigFunc = (tf: any) =>{
     this.incrementCounter()
     this.resetSecondFunction();
 
@@ -83,7 +86,7 @@ class App extends Component<AppProps, AppState> {
     })
   }
 
-  getSymbols(symbol: any) {
+  getSymbols = (symbol: any) =>{
     this.incrementCounter();
     this.resetSecondFunction();
 
@@ -93,7 +96,7 @@ class App extends Component<AppProps, AppState> {
     })
   }
 
-  getOtherValues(value: any) {
+  getOtherValues = (value: any) => {
     this.incrementCounter();
     this.resetSecondFunction();
 
@@ -108,7 +111,7 @@ class App extends Component<AppProps, AppState> {
     }
   }
 
-  getNumericalValues(num: any) {
+  getNumericalValues = (num: any)=> {
     this.incrementCounter();
     this.resetSecondFunction();
 
@@ -117,7 +120,7 @@ class App extends Component<AppProps, AppState> {
     })
   }
 
-  getArithmeticOperations(operation: any) {
+  getArithmeticOperations = (operation: any) => {
     this.incrementCounter();
     this.resetSecondFunction();
     
@@ -126,7 +129,7 @@ class App extends Component<AppProps, AppState> {
     })
   }
   
-  getAdvancedOption(option: any) {
+  getAdvancedOption = (option: any) => {
     this.incrementCounter();
     this.resetSecondFunction();
 
@@ -146,7 +149,7 @@ class App extends Component<AppProps, AppState> {
     }
   }
   
-  isMathematicalExp(str: string) {
+  isMathematicalExp = (str: string) => {
     try {
       Complex.compile(str);
     } catch (error) {
@@ -155,7 +158,7 @@ class App extends Component<AppProps, AppState> {
     return true;
   }
 
-  getResults() {
+  getResults =()=> {
     const { expressions, str } = this.state;
 
     this.incrementCounter()
@@ -167,7 +170,6 @@ class App extends Component<AppProps, AppState> {
       || str.includes("x^2")
       || str.includes("x^-1")
     ) {
-
       //Save the input values before evaluating them
       expressions.push(str);
       
@@ -181,7 +183,7 @@ class App extends Component<AppProps, AppState> {
     }
   }
 
-  getBuiltMathFunctions(func: any) {
+  getBuiltMathFunctions = (func: any)=> {
     this.resetSecondFunction();
     this.incrementCounter();
     this.setState({
@@ -189,7 +191,7 @@ class App extends Component<AppProps, AppState> {
     })
   }
 
-  setPlots(plot: any) {
+  setPlots = (plot: any) => {
     this.incrementCounter();
     this.resetSecondFunction()
     this.setState({
@@ -199,7 +201,7 @@ class App extends Component<AppProps, AppState> {
 
   //Reset second function button to false once the user clicks more than one button
   //after it was activated
-  resetSecondFunction() {
+  resetSecondFunction = () => {
     const { secondFuncOn, counter } = this.state;
     
     if (secondFuncOn && counter >= 1) {
@@ -210,13 +212,13 @@ class App extends Component<AppProps, AppState> {
     }
   }
 
-  incrementCounter() {
+  incrementCounter = () => {
     return this.setState({
       counter: this.state.counter+1
     })
   }
 
-  getHeaderSwitchers(switcher: any) {
+  getHeaderSwitchers = (switcher: any)=> {
     this.incrementCounter();
     this.resetSecondFunction();
 
@@ -227,7 +229,7 @@ class App extends Component<AppProps, AppState> {
     }
   }
 
-  getHeaderControllers(controller: any) {
+  getHeaderControllers = (controller: any) => {
     this.resetSecondFunction();
     this.incrementCounter()
 
@@ -247,23 +249,6 @@ class App extends Component<AppProps, AppState> {
       toggle, done, clear,
     str, focuserBar, expressions } = this.state;
     
-    const propsContents = {
-      trigValues: trigValues,
-      getTrigFunc: this.getTrigFunc.bind(this),
-      symbols: symbols,
-      getSymbols: this.getSymbols.bind(this),
-      otherValues: otherValues,
-      getOtherValues: this.getOtherValues.bind(this),
-      numericalValues: numericalValues,
-      getNumericalValues: this.getNumericalValues.bind(this),
-      arithmeticOperations: arithmeticOperations,
-      getArithmeticOperations: this.getArithmeticOperations.bind(this),
-      open: this.open.bind(this),
-      toggle: toggle,
-      getResults: this.getResults.bind(this),
-      builtMathFunctions: builtMathFunctions,
-      getBuiltMathFunctions: this.getBuiltMathFunctions.bind(this),
-    }
 
     const playgroundProps = {
       focuserBar: focuserBar,
@@ -320,17 +305,38 @@ class App extends Component<AppProps, AppState> {
                </section>
                 <section className="advanced-operations">
                 <AdvancedOperations
-                secondFuncOn={secondFuncOn}
-
-                 {...advancedOperationsProps}
+                  secondFuncOn={secondFuncOn}
+                  {...advancedOperationsProps}
                 />
                 </section>
                 
               <section className="basics_operations_content">
-                <Content
-                  secondFuncOn={secondFuncOn}
-                  {...propsContents}
-                />
+                {/* <Content /> */}
+                <SidebarContext.Provider
+                  value={{values: {
+                    open: this.open,
+                    toggle,
+                    builtMathFunctions,
+                    getBuiltMathFunctions: this.getBuiltMathFunctions,
+                    secondFuncOn
+                  }}}>
+                  <Sidebar/>
+                </SidebarContext.Provider>
+                <ValuesContext.Provider value={
+                  {values: 
+                    {
+                      trigValues, getTrigFunc: this.getTrigFunc,
+                      symbols, getSymbols: this.getSymbols,
+                      otherValues, getOtherValues: this.getOtherValues,
+                      numericalValues, getNumericalValues: this.getNumericalValues,
+                      secondFuncOn
+                    }
+                  }}>
+                  <Values/>
+                </ValuesContext.Provider>
+                <AssignmentContext.Provider value={{assignments: {getResults:this.getResults, arithmeticOperations, getArithmeticOperations:this.getArithmeticOperations, secondFuncOn}}}>
+                  <Assignments/>
+                </AssignmentContext.Provider>
               </section>
             </div>
           </div>

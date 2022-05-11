@@ -2,48 +2,44 @@ import {
   MouseEventHandler, Component
 } from 'react';
 import "./Sidebar.css";
-// import { Link } from 'react-router-dom';
 import { renderItemsList } from '../../helpers/renderList';
+import { SidebarContext } from '../../context';
 
-export interface SidebarProps {
-  open: MouseEventHandler<HTMLButtonElement> | undefined,
-  toggle: boolean
-  getBuiltMathFunctions: any,
-  builtMathFunctions: Array<any>,
-  secondFuncOn: boolean
-}
+// export interface SidebarProps {
+//   open: MouseEventHandler<HTMLButtonElement> | undefined,
+//   toggle: boolean
+//   getBuiltMathFunctions: any,
+//   builtMathFunctions: Array<any>,
+//   secondFuncOn: boolean
+// }
 
-export interface SidebarState {
-  equations: Array<any[]>;
-}
- 
-class Sidebar extends Component<SidebarProps, SidebarState> {
-  constructor(props: SidebarProps) {
-    super(props);
-    this.state = {
-      equations: [],
-     };
-  }
+class Sidebar extends Component<{}, {}> {
 
   render() {
-    const { builtMathFunctions, getBuiltMathFunctions, secondFuncOn} = this.props
+    // const { builtMathFunctions, getBuiltMathFunctions, secondFuncOn} = this.props
     return (
-      <div className="sidebar" >
-          <ul className="built_in_functions">
+      <SidebarContext.Consumer>
+        {({values})=>( 
+          values && <div className="sidebar" >
+            <ul className="built_in_functions">
                 {
-                  renderItemsList(builtMathFunctions, getBuiltMathFunctions, secondFuncOn)
+                  renderItemsList(values.builtMathFunctions, values.getBuiltMathFunctions, values.secondFuncOn)
                 }
-              <li className="">
-                  <button onClick={this.props.open}  style={{padding: "20px 0",}}>
-                    {
-                      !this.props.toggle && <strong>ON</strong>
-                    }
-                  </button>
+              <li className="" key={'on'}>
+                <button onClick={values.open}  style={{padding: "20px 0",}}>
+                  {
+                    !values.toggle && <strong>ON</strong>
+                  }
+                </button>
               </li>
-          </ul>
-      </div>
-     );
+            </ul>
+          </div>
+        )}
+      </SidebarContext.Consumer>
+    );
   }
 }
  
 export default Sidebar;
+
+Sidebar.contextType = SidebarContext;

@@ -2,37 +2,45 @@ import * as React from 'react';
 import { MouseEventHandler } from 'react';
 import { renderItemsList } from '../../helpers/renderList';
 import "./Assignment.css"
-export interface AssignmentsProps {
-  arithmeticOperations: Array<any>,
-  getArithmeticOperations: any,
-  getResults: MouseEventHandler<HTMLButtonElement> | undefined,
-  secondFuncOn: boolean
-}
+import { AssignmentContext } from '../../context';
+// export interface AssignmentsProps {
+//   arithmeticOperations: Array<any>,
+//   getArithmeticOperations: any,
+//   getResults: MouseEventHandler<HTMLButtonElement> | undefined,
+//   secondFuncOn: boolean
+// }
  
-class Assignments extends React.Component<AssignmentsProps, {}> {
-  constructor(props: AssignmentsProps) {
-    super(props);
-    this.state = {  };
+export default class Assignments extends React.Component<{}, {}> {
+  state = {
+    context: this.context
   }
-
+  componentDidMount(){
+    this.setState({context:this.context })
+  }
   render() {
-    const { getArithmeticOperations, arithmeticOperations, secondFuncOn } = this.props;
     return (
-      <div className="assignments">
-      
-        <ul className="arithmetic_operations">
-          {
-            renderItemsList(arithmeticOperations, getArithmeticOperations, secondFuncOn)
-          }
-          <li className="">
-              <button onClick={this.props.getResults}  style={{padding: "20px 0",}}>
-                  <strong>Enter</strong>
-              </button>
-            </li>
-       </ul>
-      </div>
+      <AssignmentContext.Consumer> 
+        { ({assignments})=>
+        ( 
+          assignments &&  
+            <div className="assignments">
+              <ul className="arithmetic_operations">
+                  {
+                    renderItemsList(assignments.arithmeticOperations, assignments.getArithmeticOperations, assignments.secondFuncOn)
+                  }
+                  <li className="">
+                    <button onClick={assignments.getResults}  style={{padding: "20px 0",}}>
+                        <strong>Enter</strong>
+                    </button>
+                  </li>
+              </ul>
+            </div>
+          )
+        } 
+      </AssignmentContext.Consumer>
      );
   }
 }
  
-export default Assignments;
+
+Assignments.contextType = AssignmentContext

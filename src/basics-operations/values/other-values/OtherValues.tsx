@@ -9,9 +9,6 @@ export interface OtherValuesProps {
 }
  
 class OtherValues extends Component<OtherValuesProps,{}> {
-  constructor(props: OtherValuesProps) {
-    super(props);
-  }
   render() {
     const { otherValues, getOtherValues, secondFuncOn } = this.props;
     return (

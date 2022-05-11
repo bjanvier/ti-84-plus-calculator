@@ -8,10 +8,6 @@ export interface FunctionsProps {
 }
  
 class Functions extends Component<FunctionsProps, {}> {
-  constructor(props: FunctionsProps) {
-    super(props);
-  }
-
   render() {
     const { allFunctions, setPlots, secondFuncOn } = this.props;
     return ( 

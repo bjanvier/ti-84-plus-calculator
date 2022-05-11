@@ -3,8 +3,8 @@ import { renderItemsList } from '../helpers/renderList';
 import "./Header1.css"
 
 export interface Header1Props {
-  headerControllers: Array<any>,
-  headerSwitchers: Array<any>,
+  headerControllers: Array<string>,
+  headerSwitchers: Array<string>,
   getHeaderSwitchers: MouseEventHandler<HTMLButtonElement>,
   getHeaderControllers: MouseEventHandler<HTMLButtonElement>,
   secondFuncOn: boolean
@@ -52,23 +52,27 @@ class Header1 extends Component<Header1Props, Header1State> {
     return (
       <div className="header_1_content">
         <section className="helper_operations">
-          <ul className="toggle_switchers">
-            {
-              renderItemsList(headerSwitchers, getHeaderSwitchers, secondFuncOn)
+          {
+            [[headerSwitchers, getHeaderSwitchers, 'toggle_switchers'], [headerControllers, getHeaderControllers, 'controllers']].map((comp:any) =>{
+              return (
+                <ul 
+                  className={comp[2]}
+                  key={comp[2]}>
+                  {renderItemsList(comp[0], comp[1], secondFuncOn)}
+                </ul>
+              )
             }
-          </ul>
-          <ul className="controllers">
-            {
-              renderItemsList(headerControllers, getHeaderControllers, secondFuncOn)
-            }
-          </ul>
+          )}
         </section>
 
         <aside className="directions">
-          {
-            directionsBTN
-            .map(btn => 
-              <button key={btn.className} className={btn.className}>{btn.symbol}</button>)
+          { directionsBTN.map(btn => 
+              <button 
+                key={btn.className} 
+                className={btn.className}>
+                  {btn.symbol}
+                </button>
+              )
           }
         </aside>
       </div>
