@@ -7,7 +7,7 @@ import Content from './basics-operations/Content';
 import AdvancedOperations from './advanced-operations/AdvancedOperations';
 import Playground from './playground/Playground';
 import Complex from 'complex-js';
-import { DATA } from './data';
+import { DATA, ButtonValues } from './data';
 import { AssignmentContext, PlaygroundContext, SidebarContext, ValuesContext } from './context';
 import Assignments from './basics-operations/assignments/Assignments';
 import Values from './basics-operations/values/Values';
@@ -23,15 +23,15 @@ interface AppState{
   toggle: boolean,
   clear: boolean,
   focuserBar: string,
-  otherValues: Array<any>,
-  symbols: Array<any>,
-  trigValues: Array<any>,
-  arithmeticOperations: Array<any>,
-  builtMathFunctions: Array<any>,
-  advancedOperations: Array<any>,
+  otherValues: Array<ButtonValues>,
+  symbols: Array<ButtonValues>,
+  trigValues: Array<ButtonValues>,
+  arithmeticOperations: Array<ButtonValues>,
+  builtMathFunctions: Array<ButtonValues>,
+  advancedOperations: Array<Partial<ButtonValues>>,
   headerControllers: Array<any>,
   headerSwitchers: Array<any>,
-  allFunctions: Array<any>,
+  allFunctions: Array<ButtonValues>,
   secondFuncOn: boolean,
   counter: number,
 }
@@ -248,7 +248,6 @@ class App extends Component<AppProps, AppState> {
       otherValues, symbols, numericalValues,
       toggle, done, clear,
     str, focuserBar, expressions } = this.state;
-    
 
     const playgroundProps = {
       focuserBar: focuserBar,

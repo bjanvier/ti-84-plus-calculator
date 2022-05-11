@@ -46,7 +46,7 @@ export default class Playground extends Component<{}, PlaygroundState> {
   render() {
     const { show } = this.state;
     return (
-        <div className="playground_container" style={{ overflow: 'scroll', position: 'relative' }}>
+      <div className="playground_container" style={{overflow:'hidden', overflowY: 'scroll', position: 'relative' }}>
       <PlaygroundContext.Consumer>
         {
         ({playground})=> 
