@@ -10,11 +10,35 @@ export interface Header1Props {
   secondFuncOn: boolean
 }
 export interface Header1State {
+  directionsBTN: {className: string | undefined, symbol: string}[]
 }
 class Header1 extends Component<Header1Props, Header1State> {
   constructor(props: Header1Props) {
     super(props);
-    this.state = {  };
+    this.state = {
+      directionsBTN:[
+        {
+          className:'top_arrow',
+          symbol: '^'
+        },
+        {
+          className:'left_arrow',
+          symbol: '<'
+        },
+        {
+          className:'bottom_arrow',
+          symbol: 'v'
+        },
+        {
+          className:'right_arrow',
+          symbol: '>'
+        },
+        {
+          className:'center_arrow',
+          symbol: 'M'
+        },
+      ]
+    };
   }
 
   render() { 
@@ -25,6 +49,7 @@ class Header1 extends Component<Header1Props, Header1State> {
       getHeaderControllers, secondFuncOn 
     } = this.props;
 
+    const {directionsBTN} = this.state
     return (
       <div className="header_1_content">
         <section className="helper_operations">
@@ -41,11 +66,11 @@ class Header1 extends Component<Header1Props, Header1State> {
         </section>
 
         <aside className="directions">
-          <button className="left_arrow"> {"<"} </button>
-          <button className="top_arrow"> ^ </button>
-          <button className="center_arrow">M</button>
-          <button className="right_arrow"> {">"} </button>
-          <button className="bottom_arrow"> {"v"} </button>
+          {
+            directionsBTN
+            .map(btn => 
+              <button key={btn.className} className={btn.className}>{btn.symbol}</button>)
+          }
         </aside>
       </div>
      );
