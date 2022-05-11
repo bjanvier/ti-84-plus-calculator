@@ -4,7 +4,7 @@ interface ButtonValues{
     value1: string
     label: string
 }
-export interface DATA{
+export interface DataUI{
     numerical: Required<ButtonValues>[]
     others: Required<ButtonValues>[]
     symbols: Required<ButtonValues>[]
@@ -17,7 +17,7 @@ export interface DATA{
     arithmeticOperations:Required<ButtonValues>[]
 }
 
-export const DATA:DATA = {
+export const DATA:DataUI = {
     numerical:[
         { value: 7, value1:"u", label: "O" },
         { value: 8, value1:"v", label: "P" },

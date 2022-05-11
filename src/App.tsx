@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, Context } from 'react';
 import './App.css';
 
 import Functions from './functions/Functions';
@@ -8,6 +8,7 @@ import AdvancedOperations from './advanced-operations/AdvancedOperations';
 import Playground from './playground/Playground';
 import Complex from 'complex-js';
 import { DATA } from './data';
+import { PlaygroundContext } from './context';
 interface AppProps{
 }
 interface AppState{
@@ -131,7 +132,7 @@ class App extends Component<AppProps, AppState> {
 
     if (option === "CLEAR") {
 
-      this.setState((state) => {
+      this.setState((_state) => {
         var clear: boolean = true;
         const str = "";
         const expressions:Array<string> = []
@@ -155,30 +156,24 @@ class App extends Component<AppProps, AppState> {
   }
 
   getResults() {
+    const { expressions, str } = this.state;
+
     this.incrementCounter()
     this.resetSecondFunction();
 
-
-    const { expressions, str } = this.state;
-
-
-    if (this.isMathematicalExp(this.state.str)
-      || this.state.str.includes("ln")
-      || this.state.str.includes("log")
-      || this.state.str.includes("x^2")
-      || this.state.str.includes("x^-1")
+    if (this.isMathematicalExp(str)
+      || str.includes("ln")
+      || str.includes("log")
+      || str.includes("x^2")
+      || str.includes("x^-1")
     ) {
 
       //Save the input values before evaluating them
       expressions.push(str);
       
       console.log(expressions);
-      this.setState((state:any) => {
-        const done: boolean = true
-        //reset the str to be able of receiving a new value
-        const str: string = "";
-        return { done, str}
-      })
+    
+      this.setState({done: true, str: ''})
     }  else {
       this.setState({
         str: "ERROR"
@@ -300,11 +295,9 @@ class App extends Component<AppProps, AppState> {
                 <div className="playground">
                   {
                     this.state.on &&
-                    <>
-                      <Playground
-                        {...playgroundProps}
-                      />
-                    </>
+                    <PlaygroundContext.Provider value={{playground: playgroundProps}}>
+                      <Playground />
+                    </PlaygroundContext.Provider>
                   }
                 </div>
               </section>
