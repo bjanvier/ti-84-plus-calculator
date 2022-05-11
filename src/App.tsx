@@ -1,11 +1,6 @@
 import { Component } from 'react';
 import './App.css';
-import {
-  BrowserRouter as Router,
-  // Switch,
-  // Route,
-  // Link
-} from "react-router-dom";
+
 import Functions from './functions/Functions';
 import Header1 from './header-1/Header1';
 import Content from './basics-operations/Content';
@@ -297,7 +292,6 @@ class App extends Component<AppProps, AppState> {
 
     return (
       <div className="App">
-        <Router>
           <div className="container">
             <div className="header">
               <section>
@@ -347,7 +341,6 @@ class App extends Component<AppProps, AppState> {
               </section>
             </div>
           </div>
-         </Router>
         </div>
     )
   }

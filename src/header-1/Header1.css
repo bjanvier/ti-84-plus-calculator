@@ -81,8 +81,6 @@ label, strong{
     font-weight:bolder;
 }
 
-.header_1_content .directions >  button{
-}
 .right_arrow{
     right:5%;
     top: 45%;
@@ -107,7 +105,6 @@ label, strong{
     left: 45%; top: 45%;
 }
 
-
 .toggle_switchers button{
     width: 90%;
     padding: 10px;
@@ -119,7 +116,6 @@ label, strong{
 }
 
 .toggle_switchers li:nth-child(2) button{
-
     background:rgba(69, 224, 64, 0.596);
     font-weight: bolder;
 }

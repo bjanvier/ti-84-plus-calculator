@@ -40,7 +40,6 @@ class Header1 extends Component<Header1Props, Header1State> {
       ]
     };
   }
-
   render() { 
     const {
       headerControllers,
