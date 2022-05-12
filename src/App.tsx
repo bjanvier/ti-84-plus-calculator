@@ -1,9 +1,7 @@
-import { Component, Context } from 'react';
+import { Component } from 'react';
 import './App.css';
-
 import Functions from './functions/Functions';
 import Header1 from './header-1/Header1';
-import Content from './basics-operations/Content';
 import AdvancedOperations from './advanced-operations/AdvancedOperations';
 import Playground from './playground/Playground';
 import Complex from 'complex-js';
@@ -29,15 +27,17 @@ interface AppState{
   arithmeticOperations: Array<ButtonValues>,
   builtMathFunctions: Array<ButtonValues>,
   advancedOperations: Array<Partial<ButtonValues>>,
+  allFunctions: Array<ButtonValues>,
   headerControllers: Array<any>,
   headerSwitchers: Array<any>,
-  allFunctions: Array<ButtonValues>,
   secondFuncOn: boolean,
   counter: number,
 }
 class App extends Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
+    const requiredData = DATA.requiredData
+    const optionalData = DATA.optionalData
     this.state = {
       counter: 0,
       secondFuncOn: false,
@@ -48,16 +48,16 @@ class App extends Component<AppProps, AppState> {
       focuserBar:"",
       toggle: false,
       clear: false,
-      numericalValues: DATA.numerical,
-      otherValues:DATA.others,
-      symbols: DATA.symbols,
-      trigValues: DATA.trigFunctions,
-      arithmeticOperations: DATA.arithmeticOperations,
-      builtMathFunctions: DATA.builtMathFunctions,
-      advancedOperations: DATA.advancedOperations,
-      headerControllers: DATA.headerControllers,
-      headerSwitchers: DATA.headerSwitchers,
-      allFunctions:DATA.allFunctions
+      numericalValues: requiredData.numericalValues,
+      otherValues:requiredData.otherValues,
+      symbols: requiredData.symbols,
+      trigValues: requiredData.trigFunctions,
+      arithmeticOperations: requiredData.arithmeticOperations,
+      builtMathFunctions: requiredData.builtMathFunctions,
+      advancedOperations:optionalData.advancedOperations,
+      headerControllers:optionalData.headerControllers,
+      headerSwitchers:optionalData.headerSwitchers,
+      allFunctions:requiredData.allFunctions
     }
   }
 
@@ -69,12 +69,9 @@ class App extends Component<AppProps, AppState> {
     if (this.state.expressions.length === 0) {
       this.setState({ focuserBar: "|"})
     }
-    this.setState(state => {
-      const on: boolean = !state.on;
-      return {
-        on
-      }
-    })
+      this.setState(state => ({
+        on:!state.on
+      }))
   }
 
   getTrigFunc = (tf: any) =>{
@@ -310,7 +307,6 @@ class App extends Component<AppProps, AppState> {
                 </section>
                 
               <section className="basics_operations_content">
-                {/* <Content /> */}
                 <SidebarContext.Provider
                   value={{values: {
                     open: this.open,

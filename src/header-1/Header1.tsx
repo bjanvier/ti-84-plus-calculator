@@ -1,10 +1,11 @@
 import { Component, MouseEventHandler } from 'react'
+import { ButtonValues } from '../data';
 import { renderItemsList } from '../helpers/renderList';
 import "./Header1.css"
 
 export interface Header1Props {
-  headerControllers: Array<string>,
-  headerSwitchers: Array<string>,
+  headerControllers: Array<ButtonValues>,
+  headerSwitchers: Array<ButtonValues>,
   getHeaderSwitchers: MouseEventHandler<HTMLButtonElement>,
   getHeaderControllers: MouseEventHandler<HTMLButtonElement>,
   secondFuncOn: boolean

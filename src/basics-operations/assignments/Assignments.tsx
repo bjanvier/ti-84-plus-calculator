@@ -1,15 +1,7 @@
 import * as React from 'react';
-import { MouseEventHandler } from 'react';
 import { renderItemsList } from '../../helpers/renderList';
 import "./Assignment.css"
 import { AssignmentContext } from '../../context';
-// export interface AssignmentsProps {
-//   arithmeticOperations: Array<any>,
-//   getArithmeticOperations: any,
-//   getResults: MouseEventHandler<HTMLButtonElement> | undefined,
-//   secondFuncOn: boolean
-// }
- 
 export default class Assignments extends React.Component<{}, {}> {
   state = {
     context: this.context
