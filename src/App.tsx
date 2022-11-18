@@ -10,7 +10,8 @@ import { AssignmentContext, PlaygroundContext, SidebarContext, ValuesContext } f
 import Assignments from './basics-operations/assignments/Assignments';
 import Values from './basics-operations/values/Values';
 import Sidebar from './basics-operations/sidebar/Sidebar';
-interface AppProps{
+interface AnyArray<A>{
+  arr: A[]
 }
 interface AppState{
   on: boolean,
@@ -28,13 +29,13 @@ interface AppState{
   builtMathFunctions: Array<ButtonValues>,
   advancedOperations: Array<Partial<ButtonValues>>,
   allFunctions: Array<ButtonValues>,
-  headerControllers: Array<any>,
-  headerSwitchers: Array<any>,
+  headerControllers: Array<ButtonValues>,
+  headerSwitchers: Array<ButtonValues>,
   secondFuncOn: boolean,
   counter: number,
 }
-class App extends Component<AppProps, AppState> {
-  constructor(props: AppProps) {
+class App extends Component<{}, AppState> {
+  constructor(props: {}) {
     super(props);
     const requiredData = DATA.requiredData
     const optionalData = DATA.optionalData
@@ -55,7 +56,7 @@ class App extends Component<AppProps, AppState> {
       arithmeticOperations: requiredData.arithmeticOperations,
       builtMathFunctions: requiredData.builtMathFunctions,
       advancedOperations:optionalData.advancedOperations,
-      headerControllers:optionalData.headerControllers,
+      headerControllers: optionalData.headerControllers,
       headerSwitchers:optionalData.headerSwitchers,
       allFunctions:requiredData.allFunctions
     }
